@@ -69,5 +69,5 @@ theme: concise
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repository: git@github.com:BuptStEve/BuptStEve.github.io.git
-  branch: master
+  repository: git@github.com:BuptStEve/blog.git
+  branch: gh-pages
