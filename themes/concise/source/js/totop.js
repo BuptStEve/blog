@@ -1,7 +1,7 @@
 (function($) { 
 	// When to show the scroll link
 	// higher number = scroll link appears further down the page：显示返回顶部的位置
-	var upperLimit = 1000;
+	var upperLimit = 100;
 	
 	// Our scroll link element
 	var scrollElem = $('#totop');
