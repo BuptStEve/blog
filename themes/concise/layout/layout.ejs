@@ -1,0 +1,23 @@
+<%
+if(page.layout !== 'false'){
+%>
+
+<%- partial('_partial/head') %>
+
+<body>
+  <header><%- partial('_partial/header') %></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><%- body %></div></div>
+    <aside id="sidebar" class="alignright"><%- partial('_partial/sidebar') %></aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer"><%- partial('_partial/footer') %></footer>
+  <%- partial('_partial/after_footer') %>
+<%- partial('_partial/math-jax')%>
+</body>
+</html>
+
+<%}else{ %>
+
+<%- page.content %>
+<%};%>

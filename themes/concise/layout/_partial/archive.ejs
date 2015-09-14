@@ -1,0 +1,28 @@
+<%
+var title = '';
+if (page.category) 
+	title = page.category;
+if (page.tag) 
+	title = page.tag;
+if (page.archive){
+	if (page.year) 
+		title = page.year + (page.month ? '/' + page.month : '');
+    else 
+		title = __('archive_a');
+}
+%>
+<h2 class="archive-title<% if (page.tag){ %> tag<% } else if (page.category){ %> category<% } %>"><%= title %></h2>
+
+<div class="archive">
+<% page.posts.each(function(item){ %>
+  <%- partial('_partial/article_2', {item: item}) %>
+<% }); %>
+</div>
+<% if (page.total > 1){ %>
+    <nav id="page-navs">
+      <%- paginator({
+        prev_text: '&laquo; Prev',
+        next_text: 'Next &raquo;'
+      }) %>
+    </nav>
+<% } %>

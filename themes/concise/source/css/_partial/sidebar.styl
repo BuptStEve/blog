@@ -1,0 +1,162 @@
+#sidebar
+  width 22%
+  margin-top 30px
+  line-height 1.8em
+  @media screen and (max-width: 900px)
+    float none
+    width 100%
+  .widget
+    background #fafafa
+    box-shadow 1px 2px 3px #ddd
+    margin-bottom 30px
+    word-wrap break-word
+    .title
+      padding 15px 20px
+      font-size 1em
+      border-bottom 1px solid color-border
+      font-weight normal
+
+    .entry
+      font-size 0.9em
+      padding 15px 20px
+
+    ul, ol, dl
+      list-style none
+      ul, ol, dl
+        list-style disc
+        margin-left 20px
+
+  .search
+    margin-bottom 30px
+    input
+      background #fafafa
+      font-family font-title
+      font-style italic
+      font-size 1em
+      padding 10px 15px
+      border 1px solid color-border
+      width 100%
+      box-sizing border-box
+      color color-meta
+      &:focus
+        color color-font
+	
+  .tag
+    small
+      margin-left 15px
+      color color-meta
+      &:before
+        content '('
+      &:after
+        content ')'
+
+  .twitter
+    li
+      border-bottom 1px solid color-border
+      padding 15px 20px
+      font-size 0.9em
+      &:last-of-type
+        border-bottom none
+    small
+      display block
+      margin-top 10px
+      color color-meta
+      line-height 1
+
+  .tagcloud
+    .entry
+      padding-right 5px
+    a
+      margin-right 10px
+      display inline-block
+	   
+#authorInfo
+  overflow hidden
+  text-align center 
+  padding-top 2em
+  margin-bottom 1.5em
+  border-bottom 1px solid color-gray
+  background-position left bottom
+  background-repeat repeat-x
+  background-size 5px auto
+  @media mini
+    padding-top 0.5em
+  @media tablet
+    padding-top 1em
+
+.author-info
+  margin 0.8em 0 0.2em
+  line-height 28px
+
+.author-logo
+  width w=(110/10)em
+  height w
+  margin 0 auto
+  background no-repeat url("../imgs/author.jpg") left top 
+  background-size w w
+  border-radius (w/2)
+  transition transform 2s ease-out
+  &:hover
+    transform rotateZ(360deg)
+  @media mini
+    margin 0 1em 0 0
+    float left
+  @media tablet
+    float none
+    width w=(110/12)em
+    height w
+    background-size w w
+    border-radius (w/2)
+    margin 0 auto
+
+.info-logo
+  font-family font-default
+  font-smoothing()
+  font-size font-size+50
+  line-height 1.3em
+  width 90%
+  margin 0 auto
+  color color-white
+  @media mini
+    margin 4.5em 0 2em 0
+    float left
+    width 75%
+
+.social-list
+  width 100%
+  margin 50 auto
+  overflow hidden
+  float left
+  text-align center
+  @media tablet
+    float none
+    width auto
+    padding 0
+    backgroun #343434
+  a
+    display inline-block
+    color #343434
+    font-size font-size+80
+    margin 0.5em
+    @media mini
+      float none
+      margin 0 
+      padding 0.3em
+    @media tablet
+      float none
+      padding 0.3em
+    &:hover:before
+      color color-blue
+    &[title="weibo"]::before,&[title="twitter"]::before,&[title="github"]::before,&[title="facebook"]::before,&[title="zhihu"]::before
+      font-family font-icon
+      font-smoothing()
+    &[title="weibo"]::before
+      content "\f18a"
+    &[title="twitter"]::before
+      content "\f099"
+    &[title="github"]::before
+      content "\f09b"
+    &[title="facebook"]::before
+      content "\f09a"
+    &[title="zhihu"]::before
+      content: "\f1d6";

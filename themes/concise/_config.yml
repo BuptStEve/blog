@@ -1,0 +1,85 @@
+####menu
+####菜单栏
+menu:
+  Home: /
+  Archives: /archives
+  About: /about
+##菜单栏，如果你想把某个分类或者某个标签放在菜单栏上，可以通过以下方法实现。
+##首先在博客根目录的source文件下创建两个文件夹tags和categories,并在文件夹下分别创建文件index.md
+##tags的index.md文件的内容如下(记得去掉前面的##),categories的内容则将两个tags改成categories即可。
+##layout: tags
+##title: tags
+##---
+##最后在menu下进行配置即可，例如你要添加hexo分类，则在menu下添加hexo: /categories/hexo
+
+####widgets
+####插件
+widgets:
+- search
+- category
+- tagcloud
+- weibo
+# - links
+
+##小插件，在concise/layout/_widget文件夹下提供了7个小插件，要使用的在widgets进行配置即可，
+##不使用则去掉，其中search默认使用的google，如果你想使用和我一样的站内搜索，可以访问以下链接：
+##http://opiece.me/2015/04/16/site-search-by-swiftype/
+
+## provide seven widgets:search,category,tagcloud,tag,weibo,recent_comments,links
+## 提供7个插件：搜索，分类，标签，标签云，微博秀，最新评论，友情链接。
+
+duoshuo_enable: false   ##不想用，改为false即可
+duoshuo_shortname:      ##你的多说shortname，上面为true，这个才会起效果
+##duoshuo comments's shortname
+##多说评论的shortname
+
+# tencent_sid: 44218032
+##tencent analysis
+##腾讯分析sid
+
+# baidu_sid: 7192fa361f5cabb11d8a22de41c1ba8f
+##baidu statistics id
+##百度统计sid，该sid为百度统计代码中：hm.src = "//hm.baidu.com/hm.js?之后的一串字符
+
+excerpt_link: 阅读全文
+
+twitter:
+  username:
+  show_replies: false
+  tweet_count: 5
+
+#### Fancybox,图片效果插件。
+fancybox: true
+
+google_analytics: 
+
+#### RSS 
+rss: /atom.xml
+## RSS address.
+
+#### Image
+#### 图片
+imglogo:
+  enable: true              ## display image logo true/false.是否开启网站的logo，标题左边的logo。
+  src: imgs/logo.png        ## `.svg` and `.png` are recommended,please put image into the theme folder `/concise/source/imgs`.图片放在`/concise/source/imgs`目录下,使用.svg和.png格式的图片.
+favicon: imgs/favicon.ico   ## size:32px*32px,`.ico` is recommended,please put image into the theme folder `/concise/source/imgs`. 书签图标,放在`/concise/source/imgs`下.
+
+author_img_enable: true   ## the picture of the lower left corner.是否开启作者头像
+author_img: imgs/author.jpg ## the path of the author_img.作者头像的路径,以../comcise/source/文件夹为根路径,如果放在imgs文件夹下,格式如本人范例
+
+
+#### Author information
+#### 作者信息,在博客右下角显示的小图标链接。
+author:
+  google_plus:    ## eg:116338260303228776998 for https://plus.google.com/u/0/116338260303228776998
+  intro_line1: "Hi,I'm a byr =￣ω￣="
+  # intro_line2: "You can download this theme on my github."
+  weibo: 5263853042     ## e.g. 436062867 for http://weibo.com/436062867
+  twitter:    ## e.g. yangjiansky for https://twitter.com/yangjiansky
+  github: buptsteve    ## e.g. A-limon for https://github.com/A-limon
+  # facebook: buptsteve
+  tsina: 5263853042     ## e.g. 1664838973  Your weibo ID,It will be used in share button.
+  linkedin:   ## e.g. in/jeffweiner08 for https://www.linkedin.com/in/jeffweiner08
+  email: stevesasuke@139.com
+
+
