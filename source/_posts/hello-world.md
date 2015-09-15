@@ -1,6 +1,6 @@
 title: Hello World
 ---
-# 0. Blog的由来
+## 0. Blog的由来
 作为一个学计算机的，一直想整个自己的Blog~=￣ω￣=~，尤其是最近在搞前端。
 先是看到[jekyll](http://jekyllcn.com/)感觉不错，折腾了半天感觉还是不够给力。
 最后还是选择了[hexo3](https://hexo.io/)。
@@ -16,7 +16,7 @@ title: Hello World
 
 ---
 
-# 1. hexo的安装
+## 1. hexo的安装
 hexo是用node.js开发的，所以我们先要安装node.js环境，去[node.js](https://nodejs.org/en/)官网，点击INSTALL就可以根据你的系统版本下载相应的安装包。  
 
 安装完成后，在命令行运行：
@@ -27,7 +27,7 @@ hexo是用node.js开发的，所以我们先要安装node.js环境，去[node.js
 
 ---
 
-# 2. 初体验~\\(≧▽≦)/~
+## 2. 初体验~\\(≧▽≦)/~
 1. 找到一个合适的位置，创建我们的项目文件夹：
 - 一般的用户：自己图形界面新建了一个
 - 命令行用户：`mkdir <folder>`
