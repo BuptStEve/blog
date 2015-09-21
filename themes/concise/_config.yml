@@ -73,8 +73,8 @@ totop_img: imgs/scrollup.png ## the path of the totop_img.回到顶部的路径,
 #### 作者信息,在博客右下角显示的小图标链接。
 author:
   google_plus:    ## eg:116338260303228776998 for https://plus.google.com/u/0/116338260303228776998
-  intro_line1: "Hi,I'm a byr =￣ω￣="
-  intro_line2: "You can download this theme on my github."
+  intro_line1: "Hi,I'm just a byr ～=￣ω￣=～"
+  intro_line2: "You can download the source code on my github."
   weibo: 5263853042     ## e.g. 436062867 for http://weibo.com/436062867
   twitter:    ## e.g. yangjiansky for https://twitter.com/yangjiansky
   github: buptsteve    ## e.g. A-limon for https://github.com/A-limon

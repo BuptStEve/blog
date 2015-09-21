@@ -1,2 +1,2 @@
 # blog
-Personal Blog
+This is a Personal Blog
