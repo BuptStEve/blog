@@ -66,6 +66,7 @@ favicon: imgs/favicon.ico   ## size:32px*32px,`.ico` is recommended,please put i
 
 author_img_enable: true   ## the picture of the lower left corner.是否开启作者头像
 author_img: imgs/author.jpg ## the path of the author_img.作者头像的路径,以../comcise/source/文件夹为根路径,如果放在imgs文件夹下,格式如本人范例
+totop_img: imgs/scrollup.png ## the path of the totop_img.回到顶部的路径,以../comcise/source/文件夹为根路径,如果放在imgs文件夹下,格式如本人范例
 
 
 #### Author information
