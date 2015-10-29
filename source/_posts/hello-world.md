@@ -20,10 +20,13 @@ title: Hello World
 hexo是用node.js开发的，所以我们先要安装node.js环境，去[node.js](https://nodejs.org/en/)官网，点击INSTALL就可以根据你的系统版本下载相应的安装包。  
 
 安装完成后，在命令行运行：
+
 ```bash
   npm install -g hexo
 ```
-** npm安装方式中 -g 的意思是全局安装。**
+
+*npm安装方式中 -g 的意思是全局安装。*
+
 ---
 
 ## 2. 初体验~\\(≧▽≦)/~
@@ -39,7 +42,9 @@ hexo是用node.js开发的，所以我们先要安装node.js环境，去[node.js
     hexo g(enerate)
     hexo s(erver)
 ```
-** 如果这步报错一般是因为没装hexo-server，运行一下命令即可： **
+
+*如果这步报错一般是因为没装hexo-server，运行一下命令即可：*
+
 ```bash
     npm install --save  hexo-server
 ```
