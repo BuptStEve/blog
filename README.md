@@ -1,6 +1,6 @@
 # 个人博客
 
-基于[hexo3](https://hexo.io/) + [github pages](https://pages.github.com/),对了，原始主题是采用[concise](https://github.com/huangjunhui/concise),做了一些修改...
+基于[hexo3](https://hexo.io/) + [github pages](https://pages.github.com/)搭建的个人博客,原始主题是采用[concise](https://github.com/huangjunhui/concise),做了一些修改...
 
 之后准备将博客文章也放到issues中，方便讨论搜索等交互功能。
 
