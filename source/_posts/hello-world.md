@@ -6,11 +6,11 @@ title: Hello World
 最后还是选择了[hexo3](https://hexo.io/)。
 <!-- more -->
 
-	主要是这几个优点吧：
-	  * 免费╮(╯▽╰)╭             (jekyll也是)
-	  * 基于node.js                 (jekyll基于ruby)
-	  * 速度快、操作更简单、命令少     (专注于写作本身)
-	  * 由于deploy命令，发布到github上也很简单
+  主要是这几个优点吧：
+    * 免费╮(╯▽╰)╭             (jekyll也是)
+    * 基于node.js                 (jekyll基于ruby)
+    * 速度快、操作更简单、命令少     (专注于写作本身)
+    * 由于deploy命令，发布到github上也很简单
 
 　　所以整个Blog就是采用[hexo3](https://hexo.io/) + [github pages](https://pages.github.com/),对了，主题是采用[concise](https://github.com/huangjunhui/concise)。(当然以后还要修改的啦╮(╯▽╰)╭)下面就详细说说怎么搭起来吧...
 
@@ -21,7 +21,7 @@ hexo是用node.js开发的，所以我们先要安装node.js环境，去[node.js
 
 安装完成后，在命令行运行：
 ```bash
-	npm install -g hexo
+  npm install -g hexo
 ```
 ** npm安装方式中 -g 的意思是全局安装。**
 ---
