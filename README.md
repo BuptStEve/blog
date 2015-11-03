@@ -2,6 +2,14 @@
 
 基于[hexo3](https://hexo.io/) + [github pages](https://pages.github.com/)搭建的个人博客,原始主题是采用[concise](https://github.com/huangjunhui/concise),做了一些修改...
 
+分支：
+  * master 分支存放原始项目代码，.gitnore 主要需要忽略 
+    * node_modules/: npm 包
+    * public/: `hexo g` 生成的需要发布的文章
+    * .deploy*/: `hexo d` deploy 相关
+    
+  * gh-pages 分支存放 `hexo d` 之后的代码，主要是为了通过 github pages 展示。
+
 之后准备将博客文章也放到issues中，方便讨论搜索等交互功能。
 
 ---
