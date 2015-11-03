@@ -1,9 +1,9 @@
 ####menu
 ####菜单栏
 menu:
-  Home: /
-  Archives: /archives
-  About: /about
+  Home: /blog
+  Archives: /blog/archives
+  # About: /about
 ##菜单栏，如果你想把某个分类或者某个标签放在菜单栏上，可以通过以下方法实现。
 ##首先在博客根目录的source文件下创建两个文件夹tags和categories,并在文件夹下分别创建文件index.md
 ##tags的index.md文件的内容如下(记得去掉前面的##),categories的内容则将两个tags改成categories即可。
