@@ -1,5 +1,8 @@
 # 个人博客
 
+## 喜欢请点击 star，issues 里是同样的内容，欢迎讨论~=￣ω￣=~
+---
+
 基于[hexo3](https://hexo.io/) + [github pages](https://pages.github.com/)搭建的个人博客,原始主题是采用[concise](https://github.com/huangjunhui/concise),做了一些修改...
 
 分支：
