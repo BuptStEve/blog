@@ -6,7 +6,7 @@
 基于[hexo3](https://hexo.io/) + [github pages](https://pages.github.com/)搭建的个人博客,原始主题是采用[concise](https://github.com/huangjunhui/concise),做了一些修改...
 
 分支：
-  * master 分支存放原始项目代码，.gitnore 主要需要忽略 
+  * master 分支存放原始项目代码 
     * node_modules/: npm 包
     * public/: `hexo g` 生成的需要发布的文章
     * .deploy*/: `hexo d` deploy 相关
