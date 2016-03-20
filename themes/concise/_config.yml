@@ -51,10 +51,10 @@ twitter:
 #### Fancybox,图片效果插件。
 fancybox: true
 
-google_analytics: 
+google_analytics:
 
-#### RSS 
-rss: /atom.xml
+#### RSS
+rss: atom.xml
 ## RSS address.
 
 #### Image
@@ -81,6 +81,6 @@ author:
   # facebook: buptsteve
   tsina: 5263853042     ## e.g. 1664838973  Your weibo ID,It will be used in share button.
   linkedin:   ## e.g. in/jeffweiner08 for https://www.linkedin.com/in/jeffweiner08
-  email: stevesasuke@139.com
+  email: buptsteve@icloud.com
 
 
