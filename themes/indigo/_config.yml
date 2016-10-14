@@ -21,11 +21,11 @@ menu:
   weibo:
     url: http://weibo.com/0osteveyoungo0
     target: _blank
-  link:
-    text: 测试
-    url: /404
+  # link:
+  #   text: 测试
+  #   url: /404
 
-rss: /atom.xml
+rss: /blog/atom.xml
 
 #你的头像url
 avatar: /blog/img/logo.jpg
