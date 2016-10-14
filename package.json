@@ -2,6 +2,9 @@
   "name": "hexo-site",
   "version": "0.0.0",
   "private": true,
+  "scripts": {
+    "deploy": "hexo clean && hexo g && gulp && hexo d"
+  },
   "hexo": {
     "version": "3.2.2"
   },
@@ -20,5 +23,13 @@
     "hexo-renderer-marked": "^0.2.4",
     "hexo-renderer-stylus": "^0.3.0",
     "hexo-server": "^0.1.2"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^2.0.13",
+    "gulp-htmlclean": "^2.7.6",
+    "gulp-htmlmin": "^3.0.0",
+    "gulp-imagemin": "^3.0.3",
+    "gulp-uglify": "^2.0.0"
   }
 }
