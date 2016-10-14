@@ -1,0 +1,11 @@
+<article class="archive-article">
+  <div class="archive-article-date">
+    <%- partial('post/date', { post: post, date_format: 'MMM D'}) %>
+  </div>
+  <div class="archive-article-inner">
+    <%- partial('post/title', {
+      hasLink: true
+    }) %>
+    <%- partial('post/tag') %>
+  </div>
+</article>
