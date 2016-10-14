@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "deploy": "hexo clean && hexo g && gulp && hexo d"
+    "d": "hexo clean && hexo g && gulp && hexo d"
   },
   "hexo": {
     "version": "3.2.2"
