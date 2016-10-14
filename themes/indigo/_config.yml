@@ -72,7 +72,7 @@ cnzz: false
 
 # Miscellaneous
 google_analytics: 'UA-85691829-1'
-favicon: /favicon.ico
+favicon: /img/favicon.ico
 
 # less
 less:
