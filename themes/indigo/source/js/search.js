@@ -11,7 +11,6 @@
         searchData;
 
     function loadData(success) {
-
         if (!searchData) {
             var xhr = new XMLHttpRequest();
             xhr.open('GET', '/blog/content.json', true);
@@ -31,7 +30,6 @@
             };
 
             xhr.send();
-
         } else {
             success(searchData);
         }
@@ -40,6 +38,7 @@
     function tpl(html, data) {
         return html.replace(/\{\w+\}/g, function(str) {
             var prop = str.replace(/\{|\}/g, '');
+
             return data[prop] || '';
         });
     }
@@ -52,6 +51,7 @@
             window.innerWidth < 760 ? docEl.classList.add('lock-size') : noop;
             searchPanel.classList.add('in');
         },
+
         hide: function() {
             window.innerWidth < 760 ? docEl.classList.remove('lock-size') : noop;
             searchPanel.classList.remove('in');
@@ -61,9 +61,7 @@
     function render(data) {
         var html = '';
         if (data.length) {
-
             html = data.map(function(post) {
-
                 return tpl(searchTpl, {
                     title: post.title,
                     path: post.path,
@@ -72,19 +70,19 @@
                         return '<span>#' + tag.name + '</span>';
                     }).join('')
                 });
-
             }).join('');
-
         } else {
             html = '<li class="tips"><i class="icon icon-coffee icon-3x"></i><p>Results not found!</p></li>';
         }
 
         searchResult.innerHTML = html;
     }
+
     function regtest(raw, regExp) {
         regExp.lastIndex = 0;
         return regExp.test(raw);
     }
+
     function matcher(post, regExp) {
         return regtest(post.title, regExp) || post.tags.some(function(tag) {
             return regtest(tag.name, regExp);
@@ -94,13 +92,13 @@
     function search(e) {
         var key = this.value.trim();
         if (!key) {
-            return;
+          Control.hide();
+          return;
         }
 
         var regExp = new RegExp(key.replace(/[ ]/g, '|'), 'gmi');
 
         loadData(function(data) {
-
             var result = data.filter(function(post) {
                 return matcher(post, regExp);
             });
@@ -115,6 +113,7 @@
 
     searchIco.addEventListener('click', function() {
         searchWrap.classList.toggle('in');
+        searchWrap.querySelector('.search-input').focus();
         keyInput.value = '';
     });
 
@@ -131,5 +130,4 @@
 
     keyInput.addEventListener('input', search);
     keyInput.addEventListener('click', search);
-
 })();
