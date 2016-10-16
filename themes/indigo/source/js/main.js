@@ -265,6 +265,19 @@
         Blog.fixedToc(top);
     }, false);
 
+    $('#post-toc').addEventListener('mousewheel', function(e) {
+      var scrollTop = this.scrollTop,
+          scrollHeight = this.scrollHeight,
+          height = this.clientHeight,
+          deltaY = e.deltaY,
+          isBottom = deltaY > 0 && (scrollHeight - height - scrollTop <= deltaY),
+          isTop = deltaY < 0 && (scrollTop <= -deltaY);
+
+      if (isTop || isBottom) {
+          e.preventDefault();
+      }
+    }, false);
+
     if (typeof BLOG_SHARE !== 'undefined') Blog.share();
 
     Waves.init();
