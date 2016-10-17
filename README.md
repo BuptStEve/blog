@@ -3,97 +3,151 @@
 ## 喜欢请点击 star，issues 里是同样的内容，欢迎讨论~=￣ω￣=~
 ---
 
-基于[hexo3](https://hexo.io/) + [github pages](https://pages.github.com/)搭建的个人博客,原始主题是采用[concise](https://github.com/huangjunhui/concise),做了一些修改...
+基于[hexo3](https://hexo.io/) + [github pages](https://pages.github.com/)搭建的个人博客,原始主题是采用[indigo](https://github.com/yscoder/hexo-theme-indigo),做了一些修改...
 
 分支：
-  * master 分支存放原始项目代码 
+  * master 分支存放原始项目代码
     * node_modules/: npm 包
     * public/: `hexo g` 生成的需要发布的文章
     * .deploy*/: `hexo d` deploy 相关
-    
+
   * gh-pages 分支存放 `hexo d` 之后的代码，主要是为了通过 github pages 展示。
 
-之后准备将博客文章也放到issues中，方便讨论搜索等交互功能。
+issues 中也是同样的内容，方便讨论搜索等交互功能。
 
 ---
 
-## **以下是具体的搭建的方法：**
+**以下是具体的搭建的方法：**
 
-## 1. hexo的安装
-hexo是用node.js开发的，所以我们先要安装node.js环境，去[node.js](https://nodejs.org/en/)官网，点击INSTALL就可以根据你的系统版本下载相应的安装包。  
+## 一、hexo的安装
+首先由于 hexo 是基于 Node.js 开发的，所以我们先要安装 Node.js 环境，进入[Node.js官网](https://nodejs.org/en/)，一般会发现有两个版本：LTS 和 Stable。
 
-安装完成后，在命令行运行：
+这两个版本的区别在于一个是 LTS 长期支持版（也是推荐选项），另一个是拥有最新功能的稳定版（适合有新功能需求的尝鲜用户）。
+
+安装完成后，在命令行运行以下命令（其中括号的意思是 install 可以缩写为 i）：
+
 ```bash
-  npm install -g hexo
-```
-** npm安装方式中 -g 的意思是全局安装。**
----
-
-## 2. 初体验~\\(≧▽≦)/~
-1. 找到一个合适的位置，创建我们的项目文件夹：
-    * 一般的用户：自己图形界面新建了一个,然后点进去
-    * 命令行用户：`mkdir <folder> && cd <folder>`
-    * hexo的用户：`hexo init <folder> && cd <folder>`
-
-2. 接着运行`npm install`npm就会自动根据package.json中的配置自动进行安装
-
-3. 运行
-```bash
-    hexo g(enerate)
-    hexo s(erver)
-```
-** 如果这步报错一般是因为没装hexo-server，运行一下命令即可： **
-```bash
-    npm install --save  hexo-server
+$ npm i(nstall) -g hexo
 ```
 
-4. 最后打开浏览器输入`localhost:4000`就可以看到页面啦～=￣ω￣=～
+*npm 安装方式中 -g 的意思是全局安装。*
 
-## 3. 换主题（theme）
-然而只是使用默认的主题（theme）怎么会有逼格→_→，果断要整一个吊炸天的主题呀~，我初步选了[concise](https://github.com/huangjunhui/concise)。
+## 二、初体验~
+### 2.1. 生成项目
+找到一个合适的位置，创建我们的项目文件夹：
+
+* 一般的用户：自己图形界面新建了一个,然后点进去
+* 命令行用户：`mkdir <folder> && cd <folder>`
+* hexo的用户：`hexo init <folder> && cd <folder>`
+
+### 2.2. 安装依赖
+
 ```bash
-    git clone https://github.com/huangjunhui/concise themes/concise
+$ npm i(nstall)
 ```
-修改 _config.yml 将theme改为concise
 
-## 4. 部署到github前需要配置 _config.yml 文件
+npm 就会自动根据 package.json 中的配置自动进行安装
+
+### 2.3. 运行预览
+
+```bash
+$ hexo g(enerate)
+$ hexo s(erver)
+```
+
+*如果这步报错一般是因为没装 hexo-server，运行以下命令安装即可：*
+
+```bash
+$ npm i(nstall) --save  hexo-server
+```
+
+> npm 安装方式中 --save 的意思是作为项目依赖(dependencies)进行安装，可以缩写为 -S (注意大写)
+> 此外还有 --save-dev 的意思是作为项目的「开发」依赖(devDependencies)进行安装，可以缩写为 -D (注意大写)
+> 这两种安装方式都会将这个包的名称和版本写进 package.json 配置文件中
+
+最后打开浏览器输入`http://localhost:4000`就可以看到页面啦～
+
+## 三、换主题（theme）
+然而只是使用默认的主题（theme）怎么会有逼格→_→，果断要整一个吊炸天的主题呀~，下面以 [indigo](https://github.com/yscoder/hexo-theme-indigo) 为例作为说明。
+
+### 3.1. 下载主题
+首先在项目目录下（就是说有个 themes 的文件夹），执行以下命令，将主题下载到 themes 文件夹下的 indigo 文件夹中。
+
+```bash
+$ git clone https://github.com/yscoder/hexo-theme-indigo themes/indigo
+```
+
+### 3.2. 配置使用主题
+接着修改 _config.yml（项目的配置文件，不是主题的） 将 theme 改为 indigo
+
+## 四、部署到 github pages
 ### 4.1. 安装 hexo-deployer-git
+
 ```bash
-    npm install hexo-deployer-git --save
+$ npm i(nstall) hexo-deployer-git --save
 ```
 
-### 4.2. 修改 _config.yml 文件
-[官方文档](https://github.com/hexojs/hexo-deployer-git)中是这么介绍的
+### 4.2. 关于 github pages
+#### 4.2.1. 分类
+##### 1. 项目站点（Project Pages）
+github 会根据 gh-pages 分支下文件生成静态页面，地址是  [yourName].github.io/[projectName]。（[yourName] 是你的账户名，[projectName] 是你的项目名）
+
+##### 2. 个人或公司站点（User/Organization Pages）
+首先要创建一个叫做 [yourName].github.io 的项目，接着 github 会根据 master 分支下文件生成静态页面，地址是 [yourName].github.io/。
+
+#### 4.2.2. 一些坑...
+* 有的主题中各种静态文件路径是写死的，比如好多主题中的文件引入是针对第二类页面写死的。
+* 有些主题中的 CDN 资源被墙，那就需要找到这些文件手动修改地址╮(╯▽╰)╭。
+
+### 4.3. 修改 _config.yml 文件
+[官方文档](htjtps://github.com/hexojs/hexo-deployer-git)中是这么介绍的
+
 ```bash
-    # You can use this:
-    deploy:
-      type: git
-      repo: <repository url>
-      branch: [branch]
-      message: [message]
+# You can use this:
+deploy:
+  type: git
+  repo: <repository url>
+  branch: [branch]
+  message: [message]
 
-    # or this:
-    deploy:
-      type: git
-      message: [message]
-      repo: 
-        github: <repository url>,[branch]
-        gitcafe: <repository url>,[branch]
-```
-```
-repo: Repository URL
-branch: Git branch to deploy the static site to
-message: Commit message. The default commit message is Site updated: {{ now('YYYY-MM-DD HH:mm:ss') }}.
+# or this:
+deploy:
+  type: git
+  message: [message]
+  repo:
+    github: <repository url>,[branch]
+    gitcafe: <repository url>,[branch]
 ```
 
+```
+* repo: Repository URL
+* branch: Git branch to deploy the static site to
+* message: Commit message. The default commit message is Site updated: {{ now('YYYY-MM-DD HH:mm:ss') }}.
+```
 
+> 根据 4.2. 所述，部署部分的填写也分为两种情况：
 
+#### 1. 个人或公司站点
+* repo：填写项目地址，例如 `git@github.com:BuptStEve/BuptStEve.github.io.git`
+* branch：填写 `master`
 
+#### 2. 项目站点
+* repo：填写项目地址，例如 `git@github.com:BuptStEve/blog.git`
+* branch：填写 `gh-pages`
+* url：https://buptsteve.github.io/blog/ （注意最后的 /）
+* root：/blog/ （注意最后的 /）
 
+### 4.4. 开始部署
+首先生成站点文件
 
+```bash
+$ hexo g
+```
 
+接着发布
 
+```bash
+$ hexo d(eploy)
+```
 
-
-
-
+最后打开对应地址就可以看到自己的博客啦～=￣ω￣=～。
