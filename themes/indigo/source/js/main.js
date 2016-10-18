@@ -265,7 +265,7 @@
         Blog.fixedToc(top);
     }, false);
 
-    $('#post-toc').addEventListener('mousewheel', function(e) {
+    $('#post-toc') && $('#post-toc').addEventListener('mousewheel', function(e) {
       var scrollTop = this.scrollTop,
           scrollHeight = this.scrollHeight,
           height = this.clientHeight,
