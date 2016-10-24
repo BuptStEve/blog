@@ -8,7 +8,7 @@ tags: [Redux, React, JavaScript]
 
 首先要明确一点，虽然 redux 是由 [flux](http://facebook.github.io/flux/) 演变而来，但我们完全可以并且也应该抛开 react 进行学习，这样可以避免一开始就陷入各种细节之中。
 
-所以推荐使用 [jsfiddle](https://jsfiddle.net/) 进行调试学习，或者使用 [react-create-app](https://github.com/facebookincubator/create-react-app) 用于和 react 配合使用。
+所以推荐使用 [jsbin](https://jsbin.com/) 进行调试学习，或者使用 [react-create-app](https://github.com/facebookincubator/create-react-app) 用于和 react 或 npm 配合。
 
 ## 一、Redux 是什么？
 > Redux is a predictable state container for JavaScript apps.  
@@ -16,29 +16,29 @@ tags: [Redux, React, JavaScript]
 
 ![overview](/blog/imgs/redux/overview.png)
 
-上个图先...先不要在意那些细节
+**先不要在意那些细节**
 
-* 总的来说，redux 保存并管理页面中的各种状态（state）
-* 当需要改变 state 时，在 action creators 中用 dispatch 触发定义好的 action
+* 总的来说，redux 使用 store 保存并管理页面中的各种状态（state）
+* 当需要改变 state 时，在 action creators 中用 dispatch 触发 action
 * 接着使用纯函数（pure function）reducer 来处理这些 action，它会根据当前 state 和 action 返回（注意这里不是修改）新的 state
 * view 层可以对于 state 进行订阅（subscribe），这样就可以得到新的 state，从而可以刷新界面（所以十分适合数据驱动的前端框架）
 
-> pure function：简单的说就是对于同样的输入总是返回同样的输出，并且没有副作用的函数。
+> pure function：简单的说就是对于同样的输入总是返回同样的输出，并且没有副作用的函数。（推荐学习了解函数式）
 
 ### 1.1. 为什么选择 redux？
-> 随着 JavaScript 单页应用开发日趋复杂，JavaScript 需要管理比任何时候都要多的 state （状态）。 这些 state 可能包括服务器响应、缓存数据、本地生成尚未持久化到服务器的数据，也包括 UI 状态，如激活的路由，被选中的标签，是否显示加载动效或者分页器等等。
+> * 随着 JavaScript 单页应用开发日趋复杂，JavaScript 需要管理比任何时候都要多的 state （状态）。 这些 state 可能包括服务器响应、缓存数据、本地生成尚未持久化到服务器的数据，也包括 UI 状态，如激活的路由，被选中的标签，是否显示加载动效或者分页器等等。
 
-> 管理不断变化的 state 非常困难。如果一个 model 的变化会引起另一个 model 变化，那么当 view 变化时，就可能引起对应 model 以及另一个 model 的变化，依次地，可能会引起另一个 view 的变化。直至你搞不清楚到底发生了什么。state 在什么时候，由于什么原因，如何变化已然不受控制。 当系统变得错综复杂的时候，想重现问题或者添加新功能就会变得举步维艰。
+> * 管理不断变化的 state 非常困难。如果一个 model 的变化会引起另一个 model 变化，那么当 view 变化时，就可能引起对应 model 以及另一个 model 的变化，依次地，可能会引起另一个 view 的变化。直至你搞不清楚到底发生了什么。state 在什么时候，由于什么原因，如何变化已然不受控制。 当系统变得错综复杂的时候，想重现问题或者添加新功能就会变得举步维艰。
 
-> 如果这还不够糟糕，考虑一些来自前端开发领域的新需求，如更新调优、服务端渲染、路由跳转前请求数据等等。前端开发者正在经受前所未有的复杂性，难道就这么放弃了吗？当然不是。
+> * 如果这还不够糟糕，考虑一些来自前端开发领域的新需求，如更新调优、服务端渲染、路由跳转前请求数据等等。前端开发者正在经受前所未有的复杂性，难道就这么放弃了吗？当然不是。
 
-> 这里的复杂性很大程度上来自于：我们总是将两个难以厘清的概念混淆在一起：变化和异步。 我称它们为曼妥思和可乐。如果把二者分开，能做的很好，但混到一起，就变得一团糟。一些库如 React 试图在视图层禁止异步和直接操作 DOM 来解决这个问题。美中不足的是，React 依旧把处理 state 中数据的问题留给了你。Redux就是为了帮你解决这个问题。
+> * 这里的复杂性很大程度上来自于：我们总是将两个难以厘清的概念混淆在一起：变化和异步。 我称它们为曼妥思和可乐。如果把二者分开，能做的很好，但混到一起，就变得一团糟。一些库如 React 试图在视图层禁止异步和直接操作 DOM 来解决这个问题。美中不足的是，React 依旧把处理 state 中数据的问题留给了你。Redux就是为了帮你解决这个问题。
 
-> 跟随 Flux、CQRS 和 Event Sourcing 的脚步，通过限制更新发生的时间和方式，Redux 试图让 state 的变化变得可预测。这些限制条件反映在 Redux 的 三大原则中。
+> * 跟随 Flux、CQRS 和 Event Sourcing 的脚步，通过限制更新发生的时间和方式，Redux 试图让 state 的变化变得可预测。这些限制条件反映在 Redux 的 三大原则中。
 
-**使用 Redux 我们可以**
+**简单总结就是使用 Redux 我们就可以~~没有蛀牙（大雾）~~**
 * 拥有可预测（predictable）的应用状态，所以应用的行为也是可预测的
-* reducer 是纯函数，方便对于状态迁移进行自动化测试
+* 因为 reducer 是纯函数，所以方便对于状态迁移进行自动化测试
 * 方便地记录日志，甚至实现时间旅行（time travel）
 
 ### 1.2. 三大原则
@@ -55,9 +55,9 @@ tags: [Redux, React, JavaScript]
 因为所有的修改都被集中化处理，且严格按照一个接一个的顺序执行，（dispatch 同步调用 reduce 函数）因此不用担心 race condition 的出现。 Action 就是普通对象而已，因此它们可以被日志打印、序列化、储存、后期调试或测试时回放出来。
 
 #### 1.2.3. 使用纯函数来执行修改（Changes are made with pure functions）
-为了描述 action 如何改变 state tree ，你需要编写 reducers。
+为了描述 action 如何改变 state tree ，你需要编写 reducer。
 
-Reducer 只是一些纯函数，它接收先前的 state 和 action，并返回新的 state。刚开始你可以只有一个 reducer，随着应用变大，你可以把它拆成多个小的 reducers，分别独立地操作 state tree 的不同部分。
+Reducer 只是纯函数，它接收先前的 state 和 action，并返回新的 state。刚开始你可以只有一个 reducer，随着应用变大，你可以把它拆成多个小的 reducers，分别独立地操作 state tree 的不同部分。
 
 ## 二、Redux 基础
 ### 2.1. action
@@ -67,10 +67,10 @@ redux 唯一限制的一点是必须有一个 type 属性用来表示执行哪�
 
 其他属性用来传递此次操作所需传递的数据，redux 对此不作限制，但是在设计时可以参照 [Flux 标准 Action](https://github.com/acdlite/flux-standard-action)。
 
-> 简单总结 Flux Standard action 就是  
-> 一个 action 必须是一个 JavaScript Object，并且有一个 type 属性。  
-> 一个 action 可以有 payload/error/meta 属性。  
-> 一个 action 不能有其他属性。  
+**简单总结 Flux Standard action 就是**
+> 1. 一个 action 必须是一个 JavaScript Object，并且有一个 type 属性。
+> 2. 一个 action 可以有 payload/error/meta 属性。
+> 3. 一个 action 不能有其他属性。
 
 ### 2.2. reducer
 Reducer 的工作就是接收旧的 state 和 action，返回新的 state。
@@ -84,9 +84,9 @@ Reducer 的工作就是接收旧的 state 和 action，返回新的 state。
 * 调用非纯函数，如 Date.now() 或 Math.random()。
 
 ### 2.3. store
-Store 就是用来维持应用所有的 state 树 的一个对象。
+Store 就是用来维持应用所有的 state 树的一个对象。
 
-在 redux 中只有一个 store（区别于 flux），在 store 中保存所有的 state。可以先把它当成一个 Object，但是除了对其 dispatch 一个 action 以外无法改变内部的 state。
+在 redux 中只有一个 store（区别于 flux 的多个 store），在 store 中保存所有的 state，可以把它当成一个封装了 state 的类。而除了对其 dispatch 一个 action 以外无法改变内部的 state。
 
 在实际操作中我们只需要把根部的 reducer 函数传递给 createStore 就可以得到一个 store。
 
@@ -113,7 +113,7 @@ const store = createStore(reducer);
 #### 2.3.2. dispatch(action)
 分发 action 给对应的 reducer。
 
-该函数会调用 getState() 和传入的 action 以【同步】的方式调用 store 的 reduce 函数，然后返回新的 state。从而 state 得到了更新，并且变化监听器（change listener）会被触发。（对于异步操作则将其放到了创建 action 这个步骤）
+该函数会调用 getState() 和传入的 action 以【同步】的方式调用 store 的 reduce 函数，然后返回新的 state。从而 state 得到了更新，并且变化监听器（change listener）会被触发。（对于异步操作则将其放到了 action creator 这个步骤）
 
 #### 2.3.3. subscribe(listener)
 为 store 添加一个变化监听器，每当 dispatch 的时候就会执行，你可以在 listener（回调函数）中使用 getState() 来得到当前的 state。
@@ -137,7 +137,7 @@ const createStore = (reducer) => {
 
     const dispatch = (action) => {
         state = reducer(state, action); // 调用 reducer
-        listeners.forEach(listener => listener()); // 调用变化监听器
+        listeners.forEach(listener => listener()); // 调用所有变化监听器
     };
 
     const subscribe = (listener) => {
@@ -157,21 +157,28 @@ const createStore = (reducer) => {
 ```
 
 ### 2.5. 计数器例子
-{% jsfiddle 6fssgop5 %}
+* 纯 JavaScript 不涉及界面（可以在右侧 console 中尝试 store.dispatch）
+> http://jsbin.com/kejezih/edit?js,console 100% 600 %}
+
+* 增加界面
+> http://jsbin.com/jihara/edit?html,js,output 100% 600 %}
 
 ## 三、与 React 进行结合
 ### 3.1. 通过 script 标签导入 react
 实现同样功能的 Counter
 
-{% jsfiddle f0snhqmr %}
+> http://jsbin.com/qalevu/edit?html,js,output 100% 800 %}
 
 ### 3.2. 用 Redux 和 React 实现 TodoApp
-在添加 react-redux 之前，首先来实现一个比计数器更复杂一点儿的 TodoApp 栗子~为了体会下 react-redux 的作用~
+在添加 react-redux 之前，为了体会下 react-redux 的作用，首先来实现一个比计数器更复杂一点儿的 TodoApp 栗子~
 
 #### 3.2.1. 分析与设计
 ##### 1. 容器组件 V.S. 展示组件
 
-组件一般分为：容器组件（Smart/Container Components）和展示组件（Dumb/Presentational Components）
+**组件一般分为**
+* 容器组件（Smart/Container Components）
+* 展示组件（Dumb/Presentational Components）
+
 
  | 容器组件 | 展示组件
 --- | ---
@@ -180,9 +187,9 @@ Aware of Redux | 是 | 否
 读取数据 | 从 Redux 获取 state | 从 props 获取数据
 修改数据 | 向 Redux 派发 actions | 从 props 调用回调函数
 
-最佳实践一般是只在最顶层组件（如路由操作）里使用 Redux。其余内部组件仅仅是展示性的，所有数据都通过 props 传入。
+最佳实践一般是由容器组件负责一些数据的获取，进行 dispatch 等操作。而展示组件组件不应该关心逻辑，所有数据都通过 props 传入。
 
-在 TodoApp 中，应该只有一个位于最高层的容器组件，（在复杂应用中可能有多个容器组件），虽然也可以嵌套使用容器组件，但还是应该尽可能地传递 props。
+这样才能达到展示组件可以在多处复用，在具体复用时就是通过容器组件将其包装，为其提供所需的各种数据。
 
 ##### 2. 应用设计
 * 一个 TodoApp 包含了三个部分：
@@ -198,23 +205,23 @@ Aware of Redux | 是 | 否
     * todos：所有的 todo
         * todo：包含 id、text 和 completed
 
-* 然而应用的 props 只需要：
-    * visibalTodos：过滤后的 todos
+* 然而传到应用中的 props 只需要：
+    * visibleTodos：过滤后的 todos
     * filter：过滤条件
 
-* Action 应该有：
+* Action 应该有三种：
     * ADD_TODO
     * TOGGLE_TODO
     * SET_VISIBILITY_FILTER
 
 #### 3.2.2. 编码实现
-* action 部分
+##### 1. action 部分
 
 ```javascript
 // 暂且使用数字作为 id
 let nextTodoId = 0;
 
-// action 创建函数
+/*-- action creators --*/
 const addTodo = (text) => (
     { type: 'ADD_TODO', id: nextTodoId++, text }
 );
@@ -228,19 +235,16 @@ const setVisibilityFilter = (filter) => (
 );
 ```
 
-* reducer 部分
+##### 2. reducer 部分
 
 ```javascript
 // 默认初始状态
-const initialState = {
-    filter: 'SHOW_ALL',
-    todos: [],
-};
+const initialState = { filter: 'SHOW_ALL', todos: [] };
 
-function todoReducer(state = initialState, action) {
+function rootReducer(state = initialState, action) {
     switch (action.type) {
         case 'ADD_TODO':
-            // 解构
+            // 对象解构
             const { id, text } = action;
 
             return {
@@ -270,23 +274,22 @@ function todoReducer(state = initialState, action) {
                 filter: action.filter,
             };
 
-
         default:
             return state;
     }
 }
 ```
 
-> 注意：  
+> 注意!
 > 1. 不要直接修改原有的 state，而是返回一个新的 state。可以使用 Object.assign() 新建一个新的 state。不能这样使用 Object.assign(state, { visibilityFilter: action.filter })，因为它会改变第一个参数的值。你必须把第一个参数设置为空对象。你也可以开启对 ES7 提案对象展开运算符的支持, 从而使用 { ...state, ...newState } 达到相同的目的。  
 > 2. 在 default 的情况下返回旧的 state，用来兼容遇到未知的 action 这样的错误。
 
 **拆分 reducer**
-目前代码看着比较冗长，其实在逻辑上 todos 的处理和 filter 的处理应该分开，所以在 state 没有互相耦合时，可以将其拆分，从而精细地对于 state 的子树进行处理。
+目前代码看着比较冗长，其实在逻辑上 todos 的处理和 filter 的处理应该分开，所以在 state 没有互相耦合时，可以将其拆分，从而让 reducer 精细地对于对应 state 的子树进行处理。
 
 ```javascript
 // 处理单个 todo
-const todo = (state, action) => {
+const todoReducer = (state, action) => {
     switch (action.type) {
         case 'ADD_TODO':
             return {
@@ -309,16 +312,16 @@ const todo = (state, action) => {
 };
 
 // 处理 todos
-const todos = (state = [], action) => {
+const todosReducer = (state = [], action) => {
     switch (action.type) {
         case 'ADD_TODO':
             return [
                 ...state,
-                todo(undefined, action),
+                todoReducer(undefined, action),
             ];
 
         case 'TOGGLE_TODO':
-            return state.map(t => todo(t, action));
+            return state.map(t => todoReducer(t, action));
 
         default:
             return state;
@@ -326,7 +329,7 @@ const todos = (state = [], action) => {
 };
 
 // 处理 filter
-const filter = (state = 'SHOW_ALL', action) => {
+const filterReducer = (state = 'SHOW_ALL', action) => {
     switch (action.type) {
         case 'SET_VISIBILITY_FILTER':
             return action.filter;
@@ -336,18 +339,642 @@ const filter = (state = 'SHOW_ALL', action) => {
     };
 };
 
-function todoReducer(state = initialState, action) {
-    return {
-        todos: todos(state.todos, action),
-        filter: filter(state.filter, action),
-    };
-}
+const rootReducer = (state = initialState, action) => ({
+    todos: todosReducer(state.todos, action),
+    filter: filterReducer(state.filter, action),
+});
 ```
 
-观察最后的 todoReducer 函数，
+注意观察最后的 rootReducer 函数，返回的是一个经过各种 reducer 处理过并合并后的新 state。
+
+然鹅，注意这里 `todos: todos(state.todos, action),` 传入 state.todos，返回的一定也是 todos（因为都是 state 树上的节点）。
+
+所以 redux 提供了很实用的 `combineReducers` api，用于简化 reducer 的合并。
+
+```javascript
+import { combineReducers } from 'redux';
+
+const rootReducer = combineReducers({
+    todos: todosReducer,
+    filter: filterReducer,
+});
+
+// initialState 可以作为第二个参数传入
+const store = createStore(rootReducer, initialState);
+```
+
+并且如果 reducer 与 state 节点同名的话（即 todosReducer -> todos）还能通过 es6 的语法更进一步地简化
+
+```javascript
+import { combineReducers } from 'redux';
+
+const rootReducer = combineReducers({ todos, filter });
+
+// initialState 可以作为第二个参数传入
+const store = createStore(rootReducer, initialState);
+```
 
 随着应用的膨胀，我们还可以将拆分后的 reducer 放到不同的文件中, 以保持其独立性并用于专门处理不同的数据域。
 
+##### 3. view 部分
+###### 1. 只有根组件
+首先只写一个根组件 <TodoApp />，store 通过 props 传入 TodoApp，并在生命周期的 componentDidMount 和 componentWillUnmount 时分别订阅与取消订阅。
+
+```javascript
+import React, { Component } from 'react';
+
+class TodoApp extends Component {
+    // 订阅 store 的变化
+    componentDidMount() {
+        const { store } = this.props;
+
+        this.unsubscribe = store.subscribe(
+            this.forceUpdate.bind(this)
+        );
+    }
+
+    // 取消订阅
+    componentWillUnmount() {
+        this.unsubscribe();
+    }
+
+    // 渲染单个 todo
+    _renderTodo(todo) {
+        const { store } = this.props;
+
+        return (
+            <li
+                key={todo.id}
+                onClick={() => store.dispatch(toggleTodo(todo.id))}
+                style={{
+                    textDecoration: todo.completed
+                        ? 'line-through'
+                        : 'none',
+                    cursor: todo.completed
+                        ? 'default'
+                        : 'pointer',
+                }}
+            >
+                {todo.text}
+            </li>
+        );
+    }
+
+    // 根据当前 filter 是否匹配，返回字符串或是 a 链接
+    _renderFilter(renderFilter, name) {
+        const { store } = this.props;
+        const { filter } = store.getState();
+
+        if (renderFilter === filter) return name;
+
+        return (
+            <a href='#' onClick={e => {
+                e.preventDefault();
+                store.dispatch(setVisibilityFilter(renderFilter))
+            }}>
+                {name}
+            </a>
+        );
+    }
+
+    // 根据当前 filter 过滤需要渲染的 todos
+    _getVisibleTodos(todos, filter) {
+        switch (filter) {
+            case 'SHOW_ALL':
+                return todos;
+
+            case 'SHOW_COMPLETED':
+                return todos.filter(todo => todo.completed);
+
+            case 'SHOW_ACTIVE':
+                return todos.filter(todo => !todo.completed);
+
+            default:
+                return todos;
+        }
+    }
+
+    render() {
+        const { store } = this.props;
+        const { todos, filter } = store.getState();
+
+        let input;
+
+        return (
+            <div>
+                {/* AddTodo */}
+                <input type="text" ref={node => input = node} />
+                <button onClick={() => {
+                    if (!input.value) return;
+
+                    store.dispatch(addTodo(input.value));
+                    input.value = '';
+                }}>
+                    addTodo
+                </button>
+
+                {/* TodoList */}
+                <ul>
+                    {this._getVisibleTodos(todos, filter)
+                        .map(this._renderTodo.bind(this))
+                    }
+                </ul>
+
+                {/* Footer */}
+                <p>
+                    Show:
+                    {' '}
+                    {this._renderFilter('SHOW_ALL', 'all')}
+                    {', '}
+                    {this._renderFilter('SHOW_COMPLETED', 'completed')}
+                    {', '}
+                    {this._renderFilter('SHOW_ACTIVE', 'active')}
+                </p>
+            </div>
+        );
+    }
+}
+
+```
+
+**TodoApp 只有根组件**
+> http://jsbin.com/bodise/edit?js,output 100% 800 %}
+
+###### 2. 组件拆分
+将所有界面内容全写在 TodoApp 中实在是太臃肿了，接下来根据之前的分析结果将其分为以下子组件（全是展示组件）
+
+* AddTodo
+* TodoList
+    * Todo
+* Footer
+    * FilterLink
+
+```javascript
+const AddTodo = ({ onAddClick }) => {
+    let input;
+
+    return (
+        <div>
+            <input type="text" ref={node => input = node} />
+            <button onClick={() => {
+                onAddClick(input.value);
+                input.value = '';
+            }}>
+                addTodo
+            </button>
+        </div>
+    );
+};
+
+const Todo = ({ text, onClick, completed }) => (
+    <li
+        onClick={onClick}
+        style={{
+            textDecoration: completed
+                ? 'line-through'
+                : 'none',
+            cursor: completed
+                ? 'default'
+                : 'pointer',
+        }}
+    >
+        {text}
+    </li>
+);
+
+const TodoList = ({ todos, onTodoClick }) => (
+    <ul>
+        {todos.map(todo =>
+            <Todo
+                key={todo.id}
+                {...todo}
+                onClick={() => onTodoClick(todo.id)}
+            />
+        )}
+    </ul>
+);
+
+const FilterLink = ({ filter, onClick, renderFilter, children }) => {
+    if (renderFilter === filter) return (<span>{children}</span>);
+
+    return (
+        <a href='#' onClick={e => {
+            e.preventDefault();
+            onClick(renderFilter);
+        }}>
+            {children}
+        </a>
+    );
+};
+
+const Footer = ({ filter, onFilterClick }) => (
+    <p>
+        Show:
+        {' '}
+        <FilterLink
+            filter={filter}
+            renderFilter="SHOW_ALL"
+            onClick={onFilterClick}
+        >
+            all
+        </FilterLink>
+        {', '}
+        <FilterLink
+            filter={filter}
+            renderFilter="SHOW_COMPLETED"
+            onClick={onFilterClick}
+        >
+            completed
+        </FilterLink>
+            {', '}
+        <FilterLink
+            filter={filter}
+            renderFilter="SHOW_ACTIVE"
+            onClick={onFilterClick}
+        >
+            active
+        </FilterLink>
+    </p>
+);
+```
+
+所以 TodoApp 精简后是这样~
+
+```javascript
+class TodoApp extends Component {
+    // ...
+
+    render() {
+        const { store } = this.props;
+        const { todos, filter } = store.getState();
+
+        return (
+            <div>
+                <AddTodo
+                    onAddClick={text => {
+                        if (!text) return;
+
+                        store.dispatch(addTodo(text));
+                    }}
+                />
+
+                <TodoList
+                    todos={this._getVisibleTodos(todos, filter)}
+                    onTodoClick={id => store.dispatch(toggleTodo(id))}
+                />
+
+                <Footer
+                    filter={filter}
+                    onFilterClick={filter => {
+                        store.dispatch(setVisibilityFilter(filter));
+                    }}
+                />
+            </div>
+        );
+    }
+}
+```
+
+###### 3. 增加容器组件
+现在我们仍然是以 TodoApp 作为容器组件，其中各个子组件都是展示组件。
+
+但是这样做的话一旦子组件需要某个属性，就需要从根组件层层传递下来，比如 FilterLink 中的 filter 属性。
+
+所以下面我们增加容器组件，让展示组件通过容器组件获得所需属性。
+
+* AddTodo
+* VisibleTodoList(container)
+    * TodoList
+        * Todo
+* Footer
+    * FilterLink(container)
+        * Link
+
+```javascript
+// store.dispatch 又被放回来了，
+// 因为暂时我们只在 AddTodo 组件中使用 addTodo 这个 action
+// 以后增加了新的 form 之后可以考虑再将 store.dispatch 移出去
+const AddTodo = ({ store }) => {
+    let input;
+
+    return (
+        <div>
+            <input type="text" ref={node => input = node} />
+            <button onClick={() => {
+                if (!input.value) return;
+
+                store.dispatch(addTodo(input.value));
+                input.value = '';
+            }}>
+                addTodo
+            </button>
+        </div>
+    );
+};
+
+const Todo = ({ text, onClick, completed }) => (
+    <li
+        onClick={onClick}
+        style={{
+            textDecoration: completed
+                ? 'line-through'
+                : 'none',
+            cursor: completed
+                ? 'default'
+                : 'pointer',
+        }}
+    >
+        {text}
+    </li>
+);
+
+const TodoList = ({ todos, onTodoClick }) => (
+    <ul>
+        {todos.map(todo =>
+            <Todo
+                key={todo.id}
+                {...todo}
+                onClick={() => onTodoClick(todo.id)}
+            />
+        )}
+    </ul>
+);
+
+// 容器组件
+class VisibleTodoList extends Component {
+    // 订阅 store 的变化
+    componentDidMount() {
+        const { store } = this.props;
+
+        this.unsubscribe = store.subscribe(
+            this.forceUpdate.bind(this)
+        );
+    }
+
+    // 取消订阅
+    componentWillUnmount() {
+        this.unsubscribe();
+    }
+
+    // 根据当前 filter 过滤需要渲染的 todos
+    _getVisibleTodos(todos, filter) {
+        switch (filter) {
+            case 'SHOW_ALL':
+                return todos;
+
+            case 'SHOW_COMPLETED':
+                return todos.filter(todo => todo.completed);
+
+            case 'SHOW_ACTIVE':
+                return todos.filter(todo => !todo.completed);
+
+            default:
+                return todos;
+        }
+    }
+
+    render() {
+        const { store } = this.props;
+        const { todos, filter } = store.getState();
+
+        return (
+            <TodoList
+                todos={this._getVisibleTodos(todos, filter)}
+                onTodoClick={id => {
+                    store.dispatch(toggleTodo(id))
+                }}
+            />
+        );
+    }
+}
+
+// 原本的 FilterLink 改成 Link，去掉 filter 和 renderFilter 属性，改为传入 active
+const Link = ({ active, onClick, children }) => {
+    if (active) return (<span>{children}</span>);
+
+    return (
+        <a href='#' onClick={e => {
+            e.preventDefault();
+            onClick();
+        }}>
+            {children}
+        </a>
+    );
+};
+
+// 容器组件
+class FilterLink extends Component {
+    // 订阅 store 的变化
+    componentDidMount() {
+        const { store } = this.props;
+
+        this.unsubscribe = store.subscribe(
+            this.forceUpdate.bind(this)
+        );
+    }
+
+    // 取消订阅
+    componentWillUnmount() {
+        this.unsubscribe();
+    }
+
+    render() {
+        const { store, renderFilter, children } = this.props;
+        const { filter } = store.getState();
+
+        return (
+            <Link
+                active={filter === renderFilter}
+                onClick={() => store.dispatch(setVisibilityFilter(renderFilter))}
+            >
+                {children}
+            </Link>
+        );
+    }
+}
+
+// 展示组件
+const Footer = ({ store }) => (
+    <p>
+        Show:
+        {' '}
+        <FilterLink
+            store={store}
+            renderFilter="SHOW_ALL"
+        >
+            all
+        </FilterLink>
+        {', '}
+        <FilterLink
+            store={store}
+            renderFilter="SHOW_COMPLETED"
+        >
+            completed
+        </FilterLink>
+            {', '}
+        <FilterLink
+            store={store}
+            renderFilter="SHOW_ACTIVE"
+        >
+            active
+        </FilterLink>
+    </p>
+);
+
+// 在不使用全局变量 store 的情况下，
+// 暂时只能通过 props 传递进来，
+// Don't worry~很快就不会这么麻烦了~
+const TodoApp = ({ store }) => (
+    <div>
+        <AddTodo store={store} />
+        <VisibleTodoList store={store} />
+        <Footer store={store} />
+    </div>
+);
+```
+
+**通过观察重构后的代码可以发现有三点麻烦的地方**
+1. 根组件需要通过 props 将 store 传给各个子组件
+2. 容器组件都要定义 componentDidMount 进行订阅和 componentWillUnmount 取消订阅
+3. 应用其实并不需要渲染所有的 todos，所以内部很麻烦地定义了 `_getVisibleTodos` 函数
+
+###### 4. Provider
+让我们先来解决第一个麻烦~，利用 React 提供的 [context 特性](http://facebook.github.io/react/docs/context.html)
+
+```javascript
+class Provider extends Component {
+    // 通过该方法向 children 的 context 注入 store
+    getChildContext() {
+        return { store: this.props.store };
+    }
+
+    render() {
+        return this.props.children;
+    }
+}
+
+// 必须要声明传入 context 的 store 的类型
+Provider.childContextTypes = {
+    store: React.PropTypes.object,
+};
+```
+
+**自顶向下地看一下如何使用到 TodoApp 中**
+
+```javascript
+// 1. 使用 Provider 包裹 TodoApp，并将 store 作为 props 传入
+ReactDOM.render(
+    <Provider store={createStore(rootReducer, initialState)}>
+        <TodoApp />
+    </Provider>,
+    document.getElementById('container'),
+);
+
+// 2. 根组件 TodoApp: 和 store say goodbye~，
+// 因为 TodoApp 并不是容器组件~
+const TodoApp = () => (
+    <div>
+        <AddTodo />
+        <VisibleTodoList />
+        <Footer />
+    </div>
+);
+
+// 3. AddTodo: 由于 props 固定作为第一个传入子组件的参数，
+// 所以 { store } 要声明在第二位，然鹅需要声明 contextTypes...
+const AddTodo = (props, { store }) => {
+    // ...
+};
+// 必须声明
+AddTodo.contextTypes = {
+    store: React.PropTypes.object,
+};
+
+// 4. VisibleTodoList: 从 props 改成从 context 中获取 store，
+// 同样声明 contextTypes...
+class VisibleTodoList extends Component {
+    // 订阅 store 的变化
+    componentDidMount() {
+        const { store } = this.context; // props -> context
+
+        // ...
+    }
+
+    // ...
+
+    render() {
+        const { store } = this.context; // props -> context
+        const { todos, filter } = store.getState();
+
+        // ...
+    }
+}
+// 必须声明
+VisibleTodoList.contextTypes = {
+    store: React.PropTypes.object,
+};
+
+// -- TodoList 和 Todo 不变 --
+
+// 5. Footer：和 store say goodbye...
+const Footer = () => (
+    <p>
+        Show:
+        {' '}
+        <FilterLink renderFilter="SHOW_ALL">
+            all
+        </FilterLink>
+        {', '}
+        <FilterLink renderFilter="SHOW_COMPLETED">
+            completed
+        </FilterLink>
+            {', '}
+        <FilterLink renderFilter="SHOW_ACTIVE">
+            active
+        </FilterLink>
+    </p>
+);
+
+// 6. FilterLink: 同 VisibleTodoList（props + contextTypes...）
+class FilterLink extends Component {
+    // 订阅 store 的变化
+    componentDidMount() {
+        const { store } = this.context; // props -> context
+
+        // ...
+    }
+
+    // ...
+
+    render() {
+        const { renderFilter, children } = this.props;
+        const { store } = this.context; // props -> context
+        const { filter } = store.getState();
+
+        // ...
+    }
+}
+// 必须声明
+FilterLink.contextTypes = {
+    store: React.PropTypes.object,
+};
+
+// -- Link 不变 --
+```
+
+**现在中间的非容器组件完全不用为了自己的孩子而费劲地传递 store={store}**
+所以以上我们就实现了简化版的由 react-redux 提供的第一个组件 <Provider />。
+
+然鹅，有木有觉得老写 contextTypes 好烦啊，而且 context 特性并不稳定，所以 context 并不应该直接写在我们的应用代码里。
+
+> 计将安出？
+
+###### 4. connect
+
+
+
+**TodoApp 使用 react-redux**
+> http://jsbin.com/bodise/edit?js,output 100% 800 %}
 
 
 
@@ -358,12 +985,6 @@ function todoReducer(state = initialState, action) {
 
 
 
-
-
-
-
-
-{% jsfiddle q4s3xL7v %}
 
 
 
