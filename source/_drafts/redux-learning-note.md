@@ -785,7 +785,9 @@ class FilterLink extends Component {
         return (
             <Link
                 active={filter === renderFilter}
-                onClick={() => store.dispatch(setVisibilityFilter(renderFilter))}
+                onClick={() => store.dispatch(
+                    setVisibilityFilter(renderFilter)
+                )}
             >
                 {children}
             </Link>
@@ -969,9 +971,115 @@ FilterLink.contextTypes = {
 
 > 计将安出？
 
-###### 4. connect
+###### 5. connect
+* OOP思维：这还不简单？写个函数把容器组件传进去作为父类，然后返回写好了 componentDidMount，componentWillUnmount 和 contextTypes 的子类不就好啦~
 
+恭喜你~面向对象的思想学的很不错~
 
+虽然 JavaScript 底层各种东西都是面向对象，然而在前端一旦与界面相关，照搬面向对象的方法实现起来会很麻烦...
+
+* React 早期用户：这还不简单？写个 mixin 岂不美哉~~？
+
+作为 react 亲生的 mixin 确实在多组件间共享方法提供了一些便利，然而使用 mixin 的组件需要了解细节，从而避免状态污染，所以一旦 mixin 数量多了之后会越来越难维护。
+
+> Unfortunately, we will not launch any mixin support for ES6 classes in React. That would defeat the purpose of only using idiomatic JavaScript concepts.
+
+所以官方也放弃了在 ES6 class 中对 mixin 的支持。
+
+* 函数式（FP）：高阶组件 High Order Component（HOC）才是终极解决方案~~
+
+> hocFactory:: W: React.Component => E: React.Component
+
+hoc 的构造函数接收一个 W（代表 WrappedComponent）返回一个 E（代表 Enhanced Component），而 E 就是这个高阶组件。
+
+假设我们有一个旧组件 Comp，然鹅现在接收参数有些变动。当然你可以复制粘贴再改旧组件的代码...（大侠受窝一拜）
+
+也可以这么写
+
+```javascript
+class NewComp extends Component {
+    mapProps(props) {
+        return {/* new props */};
+    }
+
+    render() {
+        return (<Comp {...this.mapProps(this.props)} />);
+    }
+}
+```
+
+然鹅，如果有同样逻辑的更多的组件需要适配呢？？？总不能有几个抄几遍吧...所以骚年你听说过高阶组件么~？
+
+```javascript
+const mapProps = mapFn => Comp => {
+    return class extends Component {
+        render() {
+            return (<Comp {...this.mapProps(this.props)} />);
+        }
+    };
+};
+
+const NewComp = mapProps(mapFn)(Comp);
+```
+
+可以看到借助高阶组件我们将 mapFn 和 Comp 解耦合，这样就算需要再嵌套多少修改逻辑都没问题~天黑都不怕~
+
+**ok，扯了这么多的淡，终于要说到 connect 了**
+是哒，你木有猜错，react-redux 提供的第二个也是最后一个 api —— connect 返回的就是一个高阶组件。
+
+使用的时候只需要 `connect()(WrappedComponent)` 返回的 component 自动就完成了在 componentDidMount 中订阅 store，在 componentWillUnmount 中取消订阅和声明 contextTypes。这样就只剩下最后一个麻烦
+
+> 3. 应用其实并不需要渲染所有的 todos，所以内部很麻烦地定义了 `_getVisibleTodos` 函数
+
+其实 connect 函数的第一个参数叫做 mapStateToProps，作用就是将 store 中的数据提前处理或过滤后作为 props 传入内部组件，以便内部组件高效地直接调用。这样最后一个麻烦也解决了~
+
+> 然鹅，我们问自己这样就够了么？并没有...
+
+还有最后一个细节，以 FilterLink 为例。
+
+```javascript
+class FilterLink extends Component {
+    // ...
+
+    render() {
+        const { store, renderFilter, children } = this.props;
+        const { filter } = store.getState();
+
+        return (
+            <Link
+                active={filter === renderFilter}
+                onClick={() => store.dispatch(
+                    setVisibilityFilter(renderFilter)
+                )}
+            >
+                {children}
+            </Link>
+        );
+    }
+}
+```
+
+除了从 store 中获取数据，我们还从中获取了 dispatch，以便触发 action。如果将 onClick 回调函数的内容也加到 props 中，那么整个 FilterLink 岂不是都被我们抽象了？
+
+是哒，connect 的第二个参数叫做 mapDispatchToProps，作用就是将各个调用到 dispatch 的地方都抽象成函数加到 props 中的传给内部组件。这样最后一个麻烦轰多尼得解决了~
+
+```javascript
+const mapStateToLinkProps = (state, ownProps) => ({
+    // ownProps 是原组件的 props，
+    // 这里为了和高阶组件的 props 区分
+    active: ownProps.renderFilter === state.filter,
+});
+
+const mapDispatchToLinkProps = (dispatch, ownProps) => ({
+    onClick: () => {
+        dispatch(
+            setVisibilityFilter(ownProps.renderFilter)
+        );
+    },
+});
+
+const FilterLink = connect(mapStateToLinkProps, mapDispatchToLinkProps)(Link);
+```
 
 **TodoApp 使用 react-redux**
 > http://jsbin.com/bodise/edit?js,output 100% 800 %}
