@@ -48,7 +48,7 @@ mathjax: false
 archive_yearly: true
 
 #是否开启分享
-share: true
+share: false
 
 #是否开启打赏，关闭 reward: false
 reward: false
