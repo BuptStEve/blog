@@ -1,15 +1,17 @@
 {
-  "name": "hexo-site",
-  "version": "0.0.0",
+  "name": "Blog",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
-    "d": "hexo clean && hexo g && gulp && hexo d"
+    "d": "hexo clean && hexo g && gulp && hexo d",
+    "start": "hexo s"
   },
   "hexo": {
-    "version": "3.2.2"
+    "version": "3.3.9"
   },
   "dependencies": {
-    "hexo": "^3.1.0",
+    "dtrace": "0.0.0",
+    "hexo": "^3.3.9",
     "hexo-browsersync": "^0.2.0",
     "hexo-deployer-git": "0.0.4",
     "hexo-generator-archive": "^0.1.2",
