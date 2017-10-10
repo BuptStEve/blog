@@ -7,7 +7,7 @@
     "start": "hexo s"
   },
   "hexo": {
-    "version": "3.3.9"
+    "version": "3.2.2"
   },
   "dependencies": {
     "dtrace": "0.0.0",
