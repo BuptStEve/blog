@@ -7,31 +7,31 @@
     "start": "hexo s"
   },
   "hexo": {
-    "version": "3.3.9"
+    "version": "3.7.1"
   },
   "dependencies": {
     "dtrace": "0.0.0",
     "hexo": "^3.3.9",
-    "hexo-browsersync": "^0.2.0",
+    "hexo-browsersync": "^0.3.0",
     "hexo-deployer-git": "^0.3.1",
     "hexo-generator-archive": "^0.1.2",
     "hexo-generator-category": "^0.1.2",
     "hexo-generator-feed": "^1.2.0",
-    "hexo-generator-index": "^0.1.2",
-    "hexo-generator-json-content": "^2.2.0",
-    "hexo-generator-tag": "^0.1.1",
-    "hexo-renderer-ejs": "^0.1.0",
+    "hexo-generator-index": "^0.2.1",
+    "hexo-generator-json-content": "^3.0.1",
+    "hexo-generator-tag": "^0.2.0",
+    "hexo-renderer-ejs": "^0.3.1",
     "hexo-renderer-less": "^0.2.0",
-    "hexo-renderer-marked": "^0.2.4",
+    "hexo-renderer-marked": "^0.3.2",
     "hexo-renderer-stylus": "^0.3.0",
-    "hexo-server": "^0.1.2"
+    "hexo-server": "^0.3.2"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
-    "gulp-clean-css": "^2.0.13",
+    "gulp-clean-css": "^3.9.4",
     "gulp-htmlclean": "^2.7.6",
-    "gulp-htmlmin": "^3.0.0",
-    "gulp-imagemin": "^3.0.3",
-    "gulp-uglify": "^2.0.0"
+    "gulp-htmlmin": "^4.0.0",
+    "gulp-imagemin": "^4.1.0",
+    "gulp-uglify": "^3.0.0"
   }
 }
