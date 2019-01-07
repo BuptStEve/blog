@@ -4,7 +4,7 @@
 
 > 觉得有收获喜欢文章请点击 star 哟~，欢迎大家一起讨论
 
-* [「17」如何开发一个基于 Vue 的 ui 组件库](https://github.com/BuptStEve/blog/issues/18)
+* [「17」如何开发一个基于 Vue 的 ui 组件库](https://github.com/BuptStEve/blog/issues/20)
 * [「16」如何构建通用存储中间层](https://github.com/BuptStEve/blog/issues/17)
 * [「15」如何构建通用 api 中间层](https://github.com/BuptStEve/blog/issues/16)
 * [「14」JavaScript 函数式编程（三）](https://github.com/BuptStEve/blog/issues/15)
