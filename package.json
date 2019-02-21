@@ -1,36 +1,37 @@
 {
-  "name": "blog",
-  "version": "1.0.0",
-  "private": true,
-  "scripts": {
-    "deploy": "hexo clean && hexo g && gulp && hexo d",
-    "start": "hexo s"
-  },
-  "hexo": {
-    "version": "3.7.1"
-  },
-  "dependencies": {
-    "hexo": "3.7.1",
-    "hexo-browsersync": "^0.3.0",
-    "hexo-deployer-git": "^0.3.1",
-    "hexo-generator-archive": "^0.1.2",
-    "hexo-generator-category": "^0.1.2",
-    "hexo-generator-feed": "^1.2.0",
-    "hexo-generator-index": "^0.2.1",
-    "hexo-generator-json-content": "^3.0.1",
-    "hexo-generator-tag": "^0.2.0",
-    "hexo-renderer-ejs": "^0.3.1",
-    "hexo-renderer-less": "^0.2.0",
-    "hexo-renderer-marked": "^0.3.2",
-    "hexo-renderer-stylus": "^0.3.0",
-    "hexo-server": "^0.3.2"
-  },
-  "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-clean-css": "^3.9.4",
-    "gulp-htmlclean": "^2.7.6",
-    "gulp-htmlmin": "^4.0.0",
-    "gulp-imagemin": "^4.1.0",
-    "gulp-uglify": "^3.0.0"
-  }
+    "name": "blog",
+    "version": "2.0.0",
+    "description": "✍️ StEve Young 的个人博客",
+    "private": true,
+    "scripts": {
+        "docs": "vuepress dev ./",
+        "docs:build": "vuepress build ./",
+        "lint": "eslint --fix ./ .vuepress/ --ignore-path .gitignore",
+        "deploy": "npm run docs:build && gh-pages -m \"[ci skip]\" -d dist/"
+    },
+    "devDependencies": {
+        "babel-eslint": "^10.0.1",
+        "babel-plugin-component": "^1.1.1",
+        "element-ui": "^2.5.4",
+        "eslint": "^5.12.1",
+        "eslint-config-standard": "^12.0.0",
+        "eslint-config-vue": "^2.0.2",
+        "eslint-plugin-import": "^2.15.0",
+        "eslint-plugin-node": "^8.0.1",
+        "eslint-plugin-promise": "^4.0.1",
+        "eslint-plugin-standard": "^4.0.0",
+        "eslint-plugin-vue": "^5.1.0",
+        "gh-pages": "^2.0.1",
+        "moment": "^2.24.0",
+        "node-sass": "^4.11.0",
+        "sass-loader": "^7.1.0",
+        "vuepress": "^1.0.0-alpha.39",
+        "vuepress-theme-indigo-material": "^1.0.1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/BuptStEve/blog.git"
+    },
+    "homepage": "https://buptsteve.github.io/blog/",
+    "author": "StEve Young"
 }
