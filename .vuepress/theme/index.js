@@ -1,5 +1,5 @@
 const path = require('path')
-const moment = require('moment')
+const dayjs = require('dayjs')
 const fs = require('fs')
 
 module.exports = (options, ctx) => ({
@@ -8,31 +8,23 @@ module.exports = (options, ctx) => ({
             '@vuepress/last-updated',
             {
                 transformer: (timestamp) => {
-                    const moment = require('moment')
-                    return moment(timestamp).format('YYYY-MM-DD HH:mm:ss')
+                    const dayjs = require('dayjs')
+                    return dayjs(timestamp).format('YYYY-MM-DD HH:mm:ss')
                 },
             },
         ],
     ],
     enhanceAppFiles: path.resolve(__dirname, 'enhanceApp.js'),
-    chainWebpack (config, isServer) {
-        const externals = {
-            vue: 'Vue',
-            vssue: 'Vssue',
-        }
-        config.merge({ externals })
-    },
     chainMarkdown (config) {
         config.plugin('toc').tap(([options]) => [
             Object.assign(options, {
                 includeLevel: [1, 2, 3, 4, 5, 6],
                 forceFullToc: true,
                 listType: 'ol',
-                format: headingAsString => {
-                    return headingAsString
-                },
+                format: headingAsString => headingAsString,
             }),
         ])
+
         config
             .plugin('anchor')
             .tap(([options]) => [
@@ -40,15 +32,15 @@ module.exports = (options, ctx) => ({
             ])
     },
     alias: {
+        imData: path.resolve(__dirname, 'data'),
+        imUntil: path.resolve(__dirname, 'until'),
         imStyles: path.resolve(__dirname, 'styles'),
         imRouter: path.resolve(__dirname, 'router'),
         imComponents: path.resolve(__dirname, 'components'),
-        imData: path.resolve(__dirname, 'data'),
-        imUntil: path.resolve(__dirname, 'until'),
     },
     async ready () {
-    // 生成客户端所需的数据
-    // 只处理posts文件夹下的文件
+        // 生成客户端所需的数据
+        // 只处理posts文件夹下的文件
         const postsFilter = val => val.path.slice(1, 6) === 'posts'
         // 排序函数
         const postsSorter = (prev, next) => {
@@ -114,7 +106,7 @@ module.exports = (options, ctx) => ({
             lastUpdated =
         val.frontmatter.date ||
         lastUpdated ||
-        moment().format('YYYY-MM-DD HH:mm:ss')
+        dayjs().format('YYYY-MM-DD HH:mm:ss')
             lastUpdated = changeDate(lastUpdated)
             tags = tags || ''
             title = title || ''
@@ -215,14 +207,14 @@ module.exports = (options, ctx) => ({
             }
         )
 
-        fs.writeFile(
-            `${dataPath}/search.js`,
-            `export default ${JSON.stringify(search, null, 2)};`,
-            error => {
-                if (error) { return console.log('写入搜索search文件失败,原因是' + error.message) }
-                console.log('写入搜索search文件成功')
-            }
-        )
+        // fs.writeFile(
+        //     `${dataPath}/search.js`,
+        //     `export default ${JSON.stringify(search, null, 2)};`,
+        //     error => {
+        //         if (error) { return console.log('写入搜索search文件失败,原因是' + error.message) }
+        //         console.log('写入搜索search文件成功')
+        //     }
+        // )
 
         fs.writeFile(
             `${dataPath}/poList.js`,
