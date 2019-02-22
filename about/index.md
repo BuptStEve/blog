@@ -23,4 +23,4 @@ XMFLS | BUPT | TENCENT
 ## 🤝 社交平台
 * [掘金](https://juejin.im/user/59226162570c350069b8ce42)
 * [知乎](https://www.zhihu.com/people/stevesasuke/activities)
-* [segmentfault](https://segmentfault.com/u/buptsteve)
+* [segmentFault](https://segmentfault.com/u/buptsteve)

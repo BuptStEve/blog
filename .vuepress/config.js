@@ -15,6 +15,17 @@ module.exports = {
     markdown: {
         lineNumbers: true,
     },
+    plugins: [
+        [
+            '@vuepress/last-updated',
+            {
+                transformer: (timestamp) => {
+                    const moment = require('moment')
+                    return moment(timestamp).format('YYYY-MM-DD HH:mm:ss')
+                },
+            },
+        ],
+    ],
     evergreen: true,
     serviceWorker: true,
     themeConfig: {
