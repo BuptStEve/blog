@@ -39,28 +39,28 @@ export default {
                 w = 'Posts'
                 break
             case 'all/':
-                w = 'All' + '||' + this.$site.title
+                w = 'All'
                 document.title =
-                        this.$themeConfig.menus.all + ' · ' + this.$site.title
+                    this.$themeConfig.menus.all + ' · ' + this.$site.title
                 break
             case 'tags/':
                 w = 'Tags'
                 document.title =
-                        this.$themeConfig.menus.tags +
-                        '  ·  ' +
-                        this.$site.title
+                    this.$themeConfig.menus.tags +
+                    '  ·  ' +
+                    this.$site.title
                 break
             case 'about':
                 w = 'About'
                 document.title =
-                        this.$themeConfig.menus.about +
-                        ' · ' +
-                        this.$site.title
+                    this.$themeConfig.menus.about +
+                    ' · ' +
+                    this.$site.title
                 break
             default:
                 w = 'Home'
                 document.title =
-                        this.$themeConfig.menus.home + ' · ' + this.$site.title
+                    this.$themeConfig.menus.home + ' · ' + this.$site.title
             }
             if (this.$route.path.indexOf('/tags/') > -1 && !w) {
                 w = 'Tags'

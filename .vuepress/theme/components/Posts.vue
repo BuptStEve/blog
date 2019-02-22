@@ -27,7 +27,7 @@
                                 class="toc-link ellipsis"
                                 :href="'#'+item"
                                 :style="{marginLeft:offsetList[index]*12+'px'}"
-                            >{{'H'+(offsetList[index]+1)+' . '+item}}</a>
+                            >{{item}}</a>
                         </li>
                     </ul>
                 </div>
@@ -216,20 +216,6 @@ export default {
                     function (e) {
                         if (_this.$route.path.slice(0, 7) !== '/posts/') return
                         let h = _this.getScrollTop()
-                        const toc = document.getElementById('post-toc')
-                        // const postCard = document.getElementById('post-card')
-                        if (h >= 190) {
-                            toc.classList.add('fixed')
-                        } else {
-                            toc.classList.remove('fixed')
-                        }
-                        const navH = document.getElementById('footerPost').offsetTop
-                        if (h >= navH) {
-                            toc.classList.remove('fixed')
-                        }
-                        if (h < navH && h >= navH - 500) {
-                            toc.classList.add('fixed')
-                        }
                         for (let i = 0, len = _this.allH.length; i < len; i++) {
                             if (i + 1 === _this.allH.length || h < _this.allH[i]) {
                                 return (_this.currentIndex = i)
@@ -243,6 +229,24 @@ export default {
                     110
                 )
             )
+
+            window.addEventListener('scroll', function () {
+                if (_this.$route.path.slice(0, 7) !== '/posts/') return
+                const toc = document.getElementById('post-toc')
+                let h = _this.getScrollTop()
+                if (h >= 240) {
+                    toc.classList.add('fixed')
+                } else {
+                    toc.classList.remove('fixed')
+                }
+                const navH = document.getElementById('footerPost').offsetTop
+                if (h >= navH - 20) {
+                    toc.classList.remove('fixed')
+                }
+                if (h < navH && h >= navH - 500) {
+                    toc.classList.add('fixed')
+                }
+            })
         },
     },
     watch: {
@@ -268,30 +272,30 @@ export default {
 .post-card {
     margin-right: 20%;
     padding: 35px;
-    background: #fff;
+
     transition: 0.2s all ease-in-out;
+
     border-radius: 9px;
+    background: #fff;
     box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2),
         0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12);
-}
-@media (max-width: 1200px) {
-    .post-card {
-        margin-right: 0;
-    }
 }
 .post-prev,
 .post-next {
     display: flex;
     flex-direction: column;
-    font-size: 18px;
+
     vertical-align: middle;
+
+    font-size: 18px;
     i {
         vertical-align: bottom;
     }
     a:hover,
     p:hover {
-        background-color: #e8e8e8;
         cursor: pointer;
+
+        background-color: #e8e8e8;
     }
 }
 .post-prev {
@@ -309,42 +313,50 @@ export default {
 }
 .catalog-title {
     margin-bottom: -10px;
-    text-align: center;
+
     transition: all 0.2s ease-in-out;
+    text-align: center;
 }
 .post-toc {
     position: absolute;
-    margin-left: 45px;
-    height: 60vh;
-    overflow-y: auto;
-    width: 22%;
     top: 69px;
     right: 24px;
+
+    overflow-y: auto;
+
+    width: 22%;
+    height: 60vh;
+    margin-left: 45px;
+
+    transition: 0.2s all ease-in-out;
+
     border-radius: 16px;
     background: #f6f6f6;
-    transition: 0.2s all ease-in-out;
 }
 .fixed {
     position: fixed;
-    width: 18.6%;
     top: 69px;
     right: 20px;
+
+    width: 18.6%;
     margin-top: 0;
 }
 @media (max-width: 1200px) {
     .post-toc {
         position: fixed;
+        z-index: 77;
         top: 69px;
         right: 20px;
+
         width: 88%;
+
         transform: translateX(125%);
-        z-index: 77;
     }
     .open-toc {
         transform: translateX(0);
     }
     .post-card {
-        padding: 13px;
+        margin-right: 0;
     }
 }
 
@@ -356,38 +368,47 @@ export default {
 }
 .toc-link:before,
 .toc-link:after {
-    content: "";
     position: absolute;
     z-index: 1;
     top: 0;
     right: 0;
     left: 3px;
+
     height: 100%;
+
+    content: "";
 }
 .toc-li.active > .toc-link:after {
-    border-left: 3px solid #3f51b5;
     left: 3px;
+
+    border-left: 3px solid #3f51b5;
 }
 .toc-li.active > .toc-link:before {
     background: rgba(0, 0, 0, 0.06);
 }
 .catalog-body {
     .catalog-list {
-        font-size: 13px;
         list-style: none;
+
         cursor: pointer;
+
+        font-size: 13px;
 
         .toc-li {
             height: 26px;
         }
         a {
-            display: block;
-            padding: 3px 5px 3px 9px;
-            margin: 4px 0;
             position: relative;
-            font-weight: 600;
-            font-size: 14px;
+
+            display: block;
+
+            margin: 4px 0;
+            padding: 3px 5px 3px 9px;
+
             color: inherit;
+
+            font-size: 14px;
+            font-weight: 600;
         }
 
         .active a {

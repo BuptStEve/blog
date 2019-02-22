@@ -18,15 +18,19 @@
             <el-col :span="20" :xs="{span:21}">
                 <div class="grid-content bg-purple-light">
                     <el-row type="flex" align="middle" justify="end">
-                        <el-col
-                            :span="13"
-                            :xs="{span:24}"
-                            :sm="{span:18}"
-                            :md="{span:15}"
-                            :lg="{span:13}"
+                        <SearchBox/>
+
+                        <!-- repo link -->
+                        <a
+                            v-if="repoLink"
+                            :href="repoLink"
+                            class="repo-link"
+                            target="_blank"
+                            rel="noopener noreferrer"
                         >
-                            <SearchBox/>
-                        </el-col>
+                            GitHub
+                            <OutboundLink/>
+                        </a>
                     </el-row>
                 </div>
             </el-col>
@@ -36,6 +40,7 @@
 
 <script>
 import SearchBox from '@SearchBox'
+
 export default {
     name: 'Header',
     components: { SearchBox },
@@ -61,6 +66,16 @@ export default {
         }
     },
     computed: {
+        repoLink () {
+            const { repo } = this.$site.themeConfig
+            if (repo) {
+                return /^https?:/.test(repo)
+                    ? repo
+                    : `https://github.com/${repo}`
+            }
+
+            return ''
+        },
         placeholder () {
             return this.$themeConfig.placeholder || ''
         },
@@ -167,29 +182,17 @@ export default {
 }
 </script>
 
-<style>
+<style lang="stylus" scoped>
 .header-warp {
     width: 100%;
     height: 100%;
 }
-@media (max-width: 1200px) {
-    #topHeader {
-        padding-left: 0 !important;
-    }
-}
+
 .headerShadow {
     box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2),
         0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
 }
-.el-autocomplete-suggestion li:hover {
-    background-color: #d5dfee;
-}
-.el-autocomplete-suggestion li.highlighted {
-    background-color: #d5dfee;
-}
-</style>
 
-<style lang="stylus" scoped>
 .top-header {
     position: fixed;
     left: 0;
@@ -203,68 +206,21 @@ export default {
     z-index: 30;
     height: 56px !important;
     padding-top: 3px;
-}
 
-.iconfont {
-    font-size: 32px;
-}
-
-.icon-caidan, .icon-guanbi {
-    font-size: 24px;
-}
-
-.search-ico {
-    font-size: 24px;
-    padding-right: 11px;
-}
-
-.search-input >>> input {
-    border-radius: 2rem;
-}
-
-.search-input {
-    width: 100%;
-}
-
-.search-popper {
-    .el-autocomplete-suggestion__wrap {
-        margin-bottom: 0px !important;
-
-        li:not(lastChild) {
-            border-bottom: 1px solid;
-            margin-bottom: 5px;
-        }
-    }
-
-    .name {
-        border-radius: 5px;
-        padding: 0 11px;
-        background-color: #3f51b5;
-        white-space: nowrap;
-        overflow: hidden;
-        color: white;
-        text-overflow: ellipsis;
-    }
-
-    .addr {
-        border-radius: 5px;
-        padding: 0 11px;
-        margin: 0;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    .addr-active {
-        background-color: #6973a8;
-        border-radius: 3px;
+    .repo-link {
         color: #fff;
-        padding: 0 3px 0 2px;
-        margin-left: 11px;
     }
+}
 
-    .addr-last {
-        padding-left: 0;
+@media (max-width: 1200px) {
+    #topHeader {
+        padding-left: 0 !important;
+    }
+}
+
+@media (max-width: 719px) {
+    .repo-link {
+        display none
     }
 }
 </style>

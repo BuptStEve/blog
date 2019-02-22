@@ -17,14 +17,13 @@ module.exports = {
     plugins: [],
     evergreen: true,
     themeConfig: {
-        placeholder: '搜搜看',
-        searchReply: '什么都没搜到，试一下其它搜索词~',
-        author: 'StEve Young',
-        email: 'yangzhenyu2016@gmail.com',
-        pagination: '5',
+        repo: 'BuptSteve/blog',
         avatar: '/avatar.jpg',
+        author: 'StEve Young',
         brand: '/class-struggle.jpg',
+        email: 'yangzhenyu2016@gmail.com',
         github: 'https://github.com/BuptStEve',
+        pagination: '5',
         vssue: {
             need: false,
             development: {
