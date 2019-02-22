@@ -6,7 +6,7 @@
     "scripts": {
         "docs": "vuepress dev ./",
         "docs:build": "vuepress build ./",
-        "lint": "eslint --fix ./ .vuepress/ --ignore-path .gitignore",
+        "lint": "eslint --fix ./ .vuepress/ --ext .js,.vue --ignore-path .gitignore",
         "deploy": "npm run docs:build && gh-pages -m \"[ci skip]\" -d dist/"
     },
     "dependencies": {

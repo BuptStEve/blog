@@ -4,6 +4,9 @@ const fs = require('fs')
 
 module.exports = (options, ctx) => ({
     plugins: [
+        ['@vuepress/search', {
+            searchMaxSuggestions: 10,
+        }],
         [
             '@vuepress/last-updated',
             {
