@@ -8,26 +8,14 @@ module.exports = {
     head: [
         ['link', { rel: 'icon', href: `/favicon.ico` }],
     ],
-    theme: 'indigo-material',
     locales: {
         '/': { lang: 'zh-CN', title: name, description },
     },
     markdown: {
         lineNumbers: true,
     },
-    plugins: [
-        [
-            '@vuepress/last-updated',
-            {
-                transformer: (timestamp) => {
-                    const moment = require('moment')
-                    return moment(timestamp).format('YYYY-MM-DD HH:mm:ss')
-                },
-            },
-        ],
-    ],
+    plugins: [],
     evergreen: true,
-    serviceWorker: true,
     themeConfig: {
         placeholder: '搜搜看',
         searchReply: '什么都没搜到，试一下其它搜索词~',
