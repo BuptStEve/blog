@@ -6,12 +6,13 @@
     "scripts": {
         "docs": "vuepress dev ./",
         "docs:build": "vuepress build ./",
-        "lint": "eslint --fix ./ .vuepress/ --ignore-path .gitignore",
+        "lint": "eslint --fix ./ .vuepress/ --ext .js,.vue --ignore-path .gitignore",
         "deploy": "npm run docs:build && gh-pages -m \"[ci skip]\" -d dist/"
     },
-    "devDependencies": {
+    "dependencies": {
         "babel-eslint": "^10.0.1",
         "babel-plugin-component": "^1.1.1",
+        "dayjs": "^1.8.6",
         "element-ui": "^2.5.4",
         "eslint": "^5.12.1",
         "eslint-config-standard": "^12.0.0",
@@ -22,11 +23,10 @@
         "eslint-plugin-standard": "^4.0.0",
         "eslint-plugin-vue": "^5.1.0",
         "gh-pages": "^2.0.1",
-        "moment": "^2.24.0",
         "node-sass": "^4.11.0",
         "sass-loader": "^7.1.0",
-        "vuepress": "^1.0.0-alpha.39",
-        "vuepress-theme-indigo-material": "^1.0.1"
+        "vssue": "^0.7.2",
+        "vuepress": "^1.0.0-alpha.39"
     },
     "repository": {
         "type": "git",

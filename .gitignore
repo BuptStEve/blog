@@ -3,5 +3,6 @@ dist
 coverage
 .DS_Store
 node_modules
+.vuepress/theme/data
 
 yarn.lock
