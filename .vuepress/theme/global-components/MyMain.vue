@@ -2,7 +2,7 @@
     <el-main class="my-main" :style="{marginLeft:mainLeft+'px'}">
         <content-header :content="content"></content-header>
         <keep-alive>
-            <component :is="What" :content="content"></component>
+            <component :is="whichComponent" :content="content"></component>
         </keep-alive>
     </el-main>
 </template>
@@ -30,7 +30,7 @@ export default {
         Home: () => import('imComponents/Home'),
     },
     computed: {
-        What () {
+        whichComponent () {
             let w = ''
             if (typeof window === 'undefined') return 'Home'
 

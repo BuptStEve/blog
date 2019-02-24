@@ -1,5 +1,5 @@
 <template>
-    <div :key="$page.title">
+    <div :key="$page.title" v-if="showPost">
         <el-row type="flex" justify="center" class="post-content">
             <el-col
                 :span="16"
@@ -86,6 +86,7 @@ export default {
             currentIndex: 0,
             offsetList: [],
             hasToc: false,
+            showPost: false,
         }
     },
     props: {
@@ -103,6 +104,7 @@ export default {
         }, 100)
     },
     mounted () {
+        this.showPost = true
         setTimeout(() => {
             this.getH()
             this.changeIndex()

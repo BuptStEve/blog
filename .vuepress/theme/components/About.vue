@@ -7,6 +7,7 @@
             :lg="{span:23}"
             class="post-card"
             id="post-card"
+            v-if="showAbout"
         >
             <Content></Content>
             <span id="footerPost"></span>
@@ -24,6 +25,14 @@ export default {
                 return []
             },
         },
+    },
+    data () {
+        return {
+            showAbout: false,
+        }
+    },
+    mounted () {
+        this.showAbout = true
     },
 }
 </script>

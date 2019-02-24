@@ -1,14 +1,5 @@
 <template>
-    <div class="all-warp">
-        <el-row type="flex" justify="center" align="middle" v-if="!poList.length">
-            <el-col :span="20" :xs="{span:23}" :sm="{span:23}" :md="{span:23}" :lg="{span:20}">
-                <el-card class="box-card" key="noHasPostAll">
-                    <div slot="header">
-                        <p class="post-title-time">现在什么都没有,快点开始你的第一篇文章吧~~</p>
-                    </div>
-                </el-card>
-            </el-col>
-        </el-row>
+    <div class="all-warp" v-if="showPoList">
         <div v-for="(item,index) in poList" :key="index">
             <h3>{{item[0]}}</h3>
             <el-row type="flex" justify="center" align="middle" class="post-warp">
@@ -54,6 +45,8 @@ export default {
     data () {
         return {
             poList: [],
+            showTags: false,
+            showPoList: false,
         }
     },
     props: {
@@ -72,6 +65,7 @@ export default {
     created () {
         import(/* webpackChunkName: "poList" */ 'imData/poList.js').then(
             poList => {
+                this.showPoList = true
                 this.poList = poList.default
             }
         )
