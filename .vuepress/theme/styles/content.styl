@@ -5,6 +5,12 @@
     line-height: 1.8;
     color: $content-color;
 
+    ::-webkit-scrollbar {
+        -webkit-appearance: none;
+        width: 4px;
+        height: 5px;
+    }
+
     p {
         word-wrap: break-word;
     }
@@ -154,26 +160,5 @@
         }
 
         border-radius: 4px;
-
-        .line-numbers-wrapper {
-            position: absolute;
-            top: 0;
-            width: $lineNumbersWrapperWidth;
-            text-align: center;
-            color: rgba(255, 255, 255, 0.3);
-            padding: 1.25rem 0;
-            line-height: 1.4;
-
-            br {
-                user-select: none;
-            }
-
-            .line-number {
-                position: relative;
-                z-index: 4;
-                user-select: none;
-                font-size: 0.85em;
-            }
-        }
     }
 }
