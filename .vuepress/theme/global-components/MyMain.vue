@@ -1,8 +1,8 @@
 <template>
     <el-main class="my-main" :style="{marginLeft:mainLeft+'px'}">
-        <content-header :content="content"></content-header>
+        <content-header :content="content"/>
         <keep-alive>
-            <component :is="whichComponent" :content="content"></component>
+            <component :is="whichComponent" :content="content"/>
         </keep-alive>
     </el-main>
 </template>
@@ -17,25 +17,24 @@ export default {
         },
         content: {
             type: Array,
-            default () {
-                return []
-            },
+            default: () => [],
         },
     },
     components: {
         All: () => import('imComponents/All'),
-        Posts: () => import('imComponents/Posts'),
         Tags: () => import('imComponents/Tags'),
-        About: () => import('imComponents/About'),
         Home: () => import('imComponents/Home'),
+        Posts: () => import('imComponents/Posts'),
+        About: () => import('imComponents/About'),
     },
     computed: {
         whichComponent () {
-            let w = ''
             if (typeof window === 'undefined') return 'Home'
 
+            let w = ''
             switch (this.$route.path.slice(1, 6)) {
             case 'posts':
+            case 'draft':
                 w = 'Posts'
                 break
             case 'all/':
@@ -62,6 +61,7 @@ export default {
                 document.title =
                     this.$themeConfig.menus.home + ' · ' + this.$site.title
             }
+
             if (this.$route.path.indexOf('/tags/') > -1 && !w) {
                 w = 'Tags'
                 document.title =
@@ -71,16 +71,11 @@ export default {
                     ' · ' +
                     this.$site.title
             }
+
             return w
         },
         mainLeft () {
-            let l = 230
-            if (this.isHide) {
-                l = 60
-            } else {
-                l = 230
-            }
-            return l
+            return this.isHide ? 60 : 230
         },
     },
 }

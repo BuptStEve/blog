@@ -92,16 +92,12 @@ export default {
     props: {
         content: {
             type: Array,
-            default: () => {
-                return []
-            },
+            default: () => [],
         },
     },
     created () {
         this.getPageIndex()
-        setTimeout(() => {
-            this.getPageIndex()
-        }, 100)
+        setTimeout(this.getPageIndex, 100)
     },
     mounted () {
         this.showPost = true
@@ -162,9 +158,7 @@ export default {
                     }
                 }
             })
-            let min = a.reduce((x, y) => {
-                return x > y ? y : x
-            })
+            let min = a.reduce((x, y) => x > y ? y : x)
             let offset = Math.abs(min)
             a.forEach(val => {
                 if (min < 0) {

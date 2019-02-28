@@ -1,15 +1,20 @@
 <template>
     <div style="height:100%">
         <el-container class="main-container">
-            <my-aside :isHide="isHide"></my-aside>
+            <my-aside :isHide="isHide"/>
+
             <el-container class="container-warp">
-                <my-header :showIcon="isHide" @clickMenu="clickMenu"></my-header>
-                <my-main :isHide="isHide" :content="content"></my-main>
+                <my-header :showIcon="isHide" @clickMenu="clickMenu"/>
+
+                <my-main :isHide="isHide" :content="content"/>
             </el-container>
-            <go-top></go-top>
+
+            <go-top/>
         </el-container>
-        <my-footer :content="content" :isHide="isHide"></my-footer>
-        <div @click="close" class="overlay" :class="{'overlay--active':needOverlay}"></div>
+
+        <my-footer :content="content" :isHide="isHide"/>
+
+        <div @click="close" class="overlay" :class="{'overlay--active': needOverlay}"/>
     </div>
 </template>
 
@@ -24,11 +29,9 @@ export default {
         }
     },
     created () {
-        import(/* webpackChunkName: "content" */ 'imData/content.js').then(
-            content => {
-                this.content = content.default
-            }
-        )
+        import(/* webpackChunkName: "content" */ 'imData/content.js').then((content) => {
+            this.content = content.default
+        })
     },
     methods: {
         clickMenu () {

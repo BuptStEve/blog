@@ -1,7 +1,7 @@
 const Layout = () => import('../layouts/Layout.vue')
 
 const install = (Vue, { router }) => {
-    let ru = ['/', '/all/', '/about/', '/tags/', '/tags/:tag', '/posts/:post']
+    let ru = ['/', '/all/', '/about/', '/tags/', '/tags/:tag', '/posts/:post', '/drafts/:post']
     const routes = []
 
     for (var i = 0, len = ru.length; i < len; i++) {
@@ -14,19 +14,21 @@ const install = (Vue, { router }) => {
 
     router.addRoutes(routes)
     router.beforeEach((to, from, next) => {
-        if (typeof window === 'undefined') {
-            return next()
-        }
-        document.getElementById('loader-wrapper').style.display = 'block'
-        document.getElementById('loader-wrapper').style.opacity = '1'
+        if (typeof window == 'undefined') return next()
+
+        const loaderWrapper = document.getElementById('loader-wrapper')
+        loaderWrapper.style.display = 'block'
+        loaderWrapper.style.opacity = '1'
         next()
     })
     router.afterEach(() => {
         if (typeof window === 'undefined') return
-        document.getElementById('loader-wrapper').style.opacity = '0'
+
+        const loaderWrapper = document.getElementById('loader-wrapper')
+        loaderWrapper.style.opacity = '0'
 
         setTimeout(() => {
-            document.getElementById('loader-wrapper').style.display = 'none'
+            loaderWrapper.style.display = 'none'
         }, 200)
     })
 }

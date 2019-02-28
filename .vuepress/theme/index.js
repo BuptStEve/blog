@@ -42,46 +42,29 @@ module.exports = (options, ctx) => ({
         imComponents: path.resolve(__dirname, 'components'),
     },
     async ready () {
-        // 生成客户端所需的数据
-        // 只处理posts文件夹下的文件
-        const postsFilter = val => val.path.slice(1, 6) === 'posts'
         // 排序函数
         const postsSorter = (prev, next) => {
             const prevTime =
-        new Date(prev.frontmatter.date).getTime() ||
-        new Date(prev.lastUpdated).getTime() ||
-        new Date().getTime()
+                new Date(prev.frontmatter.date).getTime() ||
+                new Date(prev.lastUpdated).getTime() ||
+                new Date().getTime()
             const nextTime =
-        new Date(next.frontmatter.date).getTime() ||
-        new Date(next.lastUpdated).getTime() ||
-        new Date().getTime()
+                new Date(next.frontmatter.date).getTime() ||
+                new Date(next.lastUpdated).getTime() ||
+                new Date().getTime()
             return prevTime - nextTime > 0 ? -1 : 1
         }
         const { pages } = ctx
-        // 格式化 lastUpdated
-        function changeDate (dateStr) {
-            if (dateStr.length === 18) {
-                let arr1 = dateStr.split(' ')
-                let arr2 = arr1[0].split('-')
-                let month = arr2[1].length === 2 ? arr2[1] : '0' + arr2[1]
-                return arr2[0] + '-' + month + '-' + arr2[2] + ' ' + arr1[1]
-            } else if (dateStr.length === undefined) {
-                let str = JSON.stringify(dateStr, null, 2)
-                return str.slice(1, 11) + ' ' + str.slice(12, -6)
-            } else {
-                return dateStr
-            }
-        }
-        // 进一步个性化 lastUpdated,全部文章页中使用
-        function changeTime (dateStr) {
-            let str = ''
-            str = dateStr.slice(0, 7)
-            const arr = str.split('-')
-            let result = [arr[0] + '-' + arr[1], Number(arr[0]) + Number(arr[1])]
-            return result
-        }
+
         // 开始格式化和排序
-        const posts = pages.filter(postsFilter)
+        let posts = pages.filter(({ path }) => /^\/posts\//.test(path))
+
+        if (process.env.NODE_ENV !== 'production') {
+            posts = posts.concat(
+                pages.filter(({ path }) => /^\/drafts\//.test(path))
+            )
+        }
+
         posts.sort(postsSorter)
 
         // 存放最终数据的变量
@@ -100,16 +83,16 @@ module.exports = (options, ctx) => ({
                 .replace(/[\n\r]/g, ' ')
                 .replace(/\s+/, ' ')
             excerpt =
-        excerpt ||
-        (_strippedContent.slice(0, 200)
-            ? _strippedContent.slice(0, 200) + '......'
-            : false) ||
-        ''
+                excerpt ||
+                (_strippedContent.slice(0, 200)
+                    ? _strippedContent.slice(0, 200) + '......'
+                    : false) ||
+                ''
 
             lastUpdated =
-        val.frontmatter.date ||
-        lastUpdated ||
-        dayjs().format('YYYY-MM-DD HH:mm:ss')
+                val.frontmatter.date ||
+                lastUpdated ||
+                dayjs().format('YYYY-MM-DD HH:mm:ss')
             lastUpdated = changeDate(lastUpdated)
             tags = tags || ''
             title = title || ''
@@ -227,5 +210,28 @@ module.exports = (options, ctx) => ({
                 console.log('写入归档页poList文件成功')
             }
         )
+
+        // 格式化 lastUpdated
+        function changeDate (dateStr) {
+            if (dateStr.length === 18) {
+                let arr1 = dateStr.split(' ')
+                let arr2 = arr1[0].split('-')
+                let month = arr2[1].length === 2 ? arr2[1] : '0' + arr2[1]
+                return arr2[0] + '-' + month + '-' + arr2[2] + ' ' + arr1[1]
+            } else if (dateStr.length === undefined) {
+                let str = JSON.stringify(dateStr, null, 2)
+                return str.slice(1, 11) + ' ' + str.slice(12, -6)
+            } else {
+                return dateStr
+            }
+        }
+        // 进一步个性化 lastUpdated,全部文章页中使用
+        function changeTime (dateStr) {
+            let str = ''
+            str = dateStr.slice(0, 7)
+            const arr = str.split('-')
+            let result = [arr[0] + '-' + arr[1], Number(arr[0]) + Number(arr[1])]
+            return result
+        }
     },
 })
