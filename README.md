@@ -4,6 +4,7 @@
 
 > 觉得有收获喜欢文章请点击 star 哟~，欢迎大家一起讨论
 
+* [「19」如何开发一个基于 TypeScript 的工具库并自动生成文档](https://buptsteve.github.io/blog/posts/019.ts-docs.html)
 * [「18」如何开发一个基于 Vue 的 ui 组件库（二）](https://buptsteve.github.io/blog/posts/018.how-to-build-a-vue-ui-lib-2.html)
 * [「17」如何开发一个基于 Vue 的 ui 组件库（一）](https://buptsteve.github.io/blog/posts/017.how-to-build-a-vue-ui-lib-1.html)
 * [「16」如何构建通用存储中间层](https://buptsteve.github.io/blog/posts/016.how-to-build-a-common-storage-layer.html)
