@@ -1,20 +1,15 @@
 const Layout = () => import('../layouts/Layout.vue')
 
 const install = (Vue, { router }) => {
-  let ru = ['/', '/all/', '/about/', '/tags/', '/tags/:tag', '/posts/:post', '/drafts/:post']
-  const routes = []
+  const routes = ['/', '/all/', '/about/', '/tags/', '/tags/:tag', '/posts/:post', '/drafts/:post']
+  routes.forEach((path) => router.addRoute({
+    name: path,
+    path,
+    component: Layout,
+  }))
 
-  for (var i = 0, len = ru.length; i < len; i++) {
-    routes.push({
-      name: ru[i],
-      path: ru[i],
-      component: Layout,
-    })
-  }
-
-  router.addRoutes(routes)
   router.beforeEach((to, from, next) => {
-    if (typeof window == 'undefined') return next()
+    if (typeof window === 'undefined') return next()
 
     const loaderWrapper = document.getElementById('loader-wrapper')
     loaderWrapper.style.display = 'block'
