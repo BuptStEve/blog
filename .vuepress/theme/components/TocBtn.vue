@@ -1,7 +1,12 @@
 <template>
-    <el-button type="primary" @click="OpenToc" :circle="true" class="gotop-btn">
-        <i class="iconfont icon-service-directory"></i>
-    </el-button>
+  <el-button
+    type="primary"
+    :circle="true"
+    class="gotop-btn"
+    @click="OpenToc"
+  >
+    <i class="iconfont icon-service-directory" />
+  </el-button>
 </template>
 
 <script>

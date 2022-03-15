@@ -1,72 +1,110 @@
 <template>
-    <div :key="$page.title" v-if="showPost">
-        <el-row type="flex" justify="center" class="post-content">
-            <el-col
-                :span="16"
-                :xs="{span:24}"
-                :sm="{span:23}"
-                :md="{span:23}"
-                :lg="{span:16}"
-                class="post-card"
-                id="post-card"
+  <div
+    v-if="showPost"
+    :key="$page.title"
+  >
+    <el-row
+      type="flex"
+      justify="center"
+      class="post-content"
+    >
+      <el-col
+        id="post-card"
+        :span="16"
+        :xs="{span:24}"
+        :sm="{span:23}"
+        :md="{span:23}"
+        :lg="{span:16}"
+        class="post-card"
+      >
+        <Content />
+        <span id="footerPost" />
+      </el-col>
+      <el-col
+        id="post-toc"
+        :span="6"
+        class="post-toc"
+        :class="{'open-toc':hasToc}"
+      >
+        <h4 class="catalog-title">
+          TOC
+        </h4>
+        <div class="catalog-body">
+          <ul
+            id="catalog-list"
+            class="catalog-list"
+          >
+            <li
+              v-for="(item,index) in catalogList"
+              :key="item"
+              class="toc-li"
+              :class="{active:currentIndex===index}"
             >
-                <Content></Content>
-                <span id="footerPost"></span>
-            </el-col>
-            <el-col :span="6" class="post-toc" id="post-toc" :class="{'open-toc':hasToc}">
-                <h4 class="catalog-title">TOC</h4>
-                <div class="catalog-body">
-                    <ul id="catalog-list" class="catalog-list">
-                        <li
-                            v-for="(item,index) in catalogList"
-                            :key="item"
-                            class="toc-li"
-                            :class="{active:currentIndex===index}"
-                        >
-                            <a
-                                class="toc-link ellipsis"
-                                :href="'#'+item"
-                                :style="{marginLeft:offsetList[index]*12+'px'}"
-                            >{{item}}</a>
-                        </li>
-                    </ul>
-                </div>
-            </el-col>
-        </el-row>
-        <el-row type="flex" justify="space-around" class="post-nav">
-            <el-col :span="7" class="post-prev">
-                <div v-if="!isNaN(prevPost)">
-                    <router-link :to="content[prevPost].path||'/'">
-                        <i class="el-icon-arrow-left"></i> Prev
-                    </router-link>
-                    <router-link
-                        tag="p"
-                        :to="content[prevPost].path||'/'"
-                        class="nav-title"
-                    >{{content[prevPost].title}}</router-link>
-                </div>
-            </el-col>
-            <el-col class="post-next" :lg="{pull:5}" :span="7">
-                <div v-if="!isNaN(nextPost)">
-                    <router-link :to="content[nextPost].path||'/'">
-                        Next
-                        <i class="el-icon-arrow-right"></i>
-                    </router-link>
-                    <router-link
-                        tag="p"
-                        :to="content[nextPost].path||'/'"
-                        class="nav-title"
-                    >{{content[nextPost].title}}</router-link>
-                </div>
-            </el-col>
-        </el-row>
-        <el-row type="flex" justify="center">
-            <el-col :span="23" v-if="$themeConfig.vssue.need && $page.title">
-                <my-vssue/>
-            </el-col>
-        </el-row>
-        <toc-btn @toc="changeToc"></toc-btn>
-    </div>
+              <a
+                class="toc-link ellipsis"
+                :href="'#'+item"
+                :style="{marginLeft:offsetList[index]*12+'px'}"
+              >{{ item }}</a>
+            </li>
+          </ul>
+        </div>
+      </el-col>
+    </el-row>
+    <el-row
+      type="flex"
+      justify="space-around"
+      class="post-nav"
+    >
+      <el-col
+        :span="7"
+        class="post-prev"
+      >
+        <div v-if="!isNaN(prevPost)">
+          <router-link :to="content[prevPost].path||'/'">
+            <i class="el-icon-arrow-left" /> Prev
+          </router-link>
+          <router-link
+            tag="p"
+            :to="content[prevPost].path||'/'"
+            class="nav-title"
+          >
+            {{ content[prevPost].title }}
+          </router-link>
+        </div>
+      </el-col>
+      <el-col
+        class="post-next"
+        :lg="{pull:5}"
+        :span="7"
+      >
+        <div v-if="!isNaN(nextPost)">
+          <router-link :to="content[nextPost].path||'/'">
+            Next
+            <i class="el-icon-arrow-right" />
+          </router-link>
+          <router-link
+            tag="p"
+            :to="content[nextPost].path||'/'"
+            class="nav-title"
+          >
+            {{ content[nextPost].title }}
+          </router-link>
+        </div>
+      </el-col>
+    </el-row>
+    <el-row
+      type="flex"
+      justify="center"
+    >
+      <el-col
+        v-if="$themeConfig.vssue.need && $page.title"
+        :span="23"
+      >
+        <my-vssue />
+      </el-col>
+    </el-row>
+    <toc-btn @toc="changeToc" />
+  </div>
 </template>
 
 <script>
@@ -76,6 +114,12 @@ export default {
   components: {
     TocBtn,
     MyVssue: () => import('imComponents/MyVssue'),
+  },
+  props: {
+    content: {
+      type: Array,
+      default: () => [],
+    },
   },
   data () {
     return {
@@ -89,11 +133,17 @@ export default {
       showPost: false,
     }
   },
-  props: {
-    content: {
-      type: Array,
-      default: () => [],
+  watch: {
+    $route (to) {
+      if (to.path.slice(0, 7) === '/posts/') {
+        this.getPageIndex()
+        setTimeout(() => {
+          this.getH()
+          this.changeIndex()
+        }, 20)
+      }
     },
+    deep: true,
   },
   created () {
     this.getPageIndex()
@@ -244,18 +294,6 @@ export default {
         }
       })
     },
-  },
-  watch: {
-    $route (to) {
-      if (to.path.slice(0, 7) === '/posts/') {
-        this.getPageIndex()
-        setTimeout(() => {
-          this.getH()
-          this.changeIndex()
-        }, 20)
-      }
-    },
-    deep: true,
   },
 }
 </script>

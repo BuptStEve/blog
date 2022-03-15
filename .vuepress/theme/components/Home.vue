@@ -1,72 +1,87 @@
 <template>
-    <div class="marginTop">
-        <el-row
-            type="flex"
-            justify="center"
-            align="middle"
-            v-for="item in posts"
-            :key="item.id"
-        >
-            <el-col
-                :span="20"
-                :xs="{span:23}"
-                :sm="{span:23}"
-                :md="{span:23}"
-                :lg="{span:20}"
+  <div class="marginTop">
+    <el-row
+      v-for="item in posts"
+      :key="item.id"
+      type="flex"
+      justify="center"
+      align="middle"
+    >
+      <el-col
+        :span="20"
+        :xs="{span:23}"
+        :sm="{span:23}"
+        :md="{span:23}"
+        :lg="{span:20}"
+      >
+        <el-card class="box-card">
+          <div slot="header">
+            <p class="post-title-time">
+              {{ item.lastUpdated }}
+            </p>
+            <router-link
+              :to="item.path"
+              class="post-title-link"
             >
-                <el-card class="box-card">
-                    <div slot="header">
-                        <p class="post-title-time">{{item.lastUpdated}}</p>
-                        <router-link :to="item.path" class="post-title-link">{{item.title}}</router-link>
-                    </div>
-                    <div v-if="(item.excerpt && item.tags.length)">
-                        <div v-if="item.excerpt">
-                            <div class="post-excerpt">{{"摘要~~~："+item.excerpt}}</div>
-                        </div>
-                        <div class="post-footer" v-if="item.tags.length">
-                            <el-tag
-                                @click="toTaglist"
-                                v-for="tag in item.tags"
-                                :key="tag"
-                                size="medium"
-                                :hit="true"
-                            >{{tag}}</el-tag>
-                        </div>
-                    </div>
-                </el-card>
-            </el-col>
-        </el-row>
-        <el-row
-            class="pagination-wrap"
-            type="flex"
-            justify="center"
-            align="middle"
-            v-show="content.length"
-        >
-            <el-col :span="16" :xs="{span:24}" :sm="{span:20}" :md="{span:18}" :lg="{span:16}">
-                <el-pagination
-                    :current-page="currentPage"
-                    class="pagination"
-                    background
-                    @current-change="changePage"
-                    layout="prev, pager, next"
-                    :page-size="pagination"
-                    :total="content.length"
-                    key="fenyei"
-                ></el-pagination>
-            </el-col>
-        </el-row>
-    </div>
+              {{ item.title }}
+            </router-link>
+          </div>
+          <div v-if="(item.excerpt && item.tags.length)">
+            <div v-if="item.excerpt">
+              <div class="post-excerpt">
+                {{ "摘要~~~："+item.excerpt }}
+              </div>
+            </div>
+            <div
+              v-if="item.tags.length"
+              class="post-footer"
+            >
+              <el-tag
+                v-for="tag in item.tags"
+                :key="tag"
+                size="medium"
+                :hit="true"
+                @click="toTaglist"
+              >
+                {{ tag }}
+              </el-tag>
+            </div>
+          </div>
+        </el-card>
+      </el-col>
+    </el-row>
+    <el-row
+      v-show="content.length"
+      class="pagination-wrap"
+      type="flex"
+      justify="center"
+      align="middle"
+    >
+      <el-col
+        :span="16"
+        :xs="{span:24}"
+        :sm="{span:20}"
+        :md="{span:18}"
+        :lg="{span:16}"
+      >
+        <el-pagination
+          key="fenyei"
+          :current-page="currentPage"
+          class="pagination"
+          background
+          layout="prev, pager, next"
+          :page-size="pagination"
+          :total="content.length"
+          @current-change="changePage"
+        />
+      </el-col>
+    </el-row>
+  </div>
 </template>
 
 <script>
 export default {
   name: 'Home',
-  data () {
-    return {
-      currentPage: 1,
-    }
-  },
   props: {
     content: {
       type: Array,
@@ -74,6 +89,11 @@ export default {
         return []
       },
     },
+  },
+  data () {
+    return {
+      currentPage: 1,
+    }
   },
   computed: {
     pagination () {

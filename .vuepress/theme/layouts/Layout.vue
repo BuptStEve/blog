@@ -1,21 +1,34 @@
 <template>
-    <div style="height:100%">
-        <el-container class="main-container">
-            <my-aside :isHide="isHide"/>
+  <div style="height:100%">
+    <el-container class="main-container">
+      <my-aside :is-hide="isHide" />
 
-            <el-container class="container-warp">
-                <my-header :showIcon="isHide" @clickMenu="clickMenu"/>
+      <el-container class="container-warp">
+        <my-header
+          :show-icon="isHide"
+          @clickMenu="clickMenu"
+        />
 
-                <my-main :isHide="isHide" :content="content"/>
-            </el-container>
+        <my-main
+          :is-hide="isHide"
+          :content="content"
+        />
+      </el-container>
 
-            <go-top/>
-        </el-container>
+      <go-top />
+    </el-container>
 
-        <my-footer :content="content" :isHide="isHide"/>
+    <my-footer
+      :content="content"
+      :is-hide="isHide"
+    />
 
-        <div @click="close" class="overlay" :class="{'overlay--active': needOverlay}"/>
-    </div>
+    <div
+      class="overlay"
+      :class="{'overlay--active': needOverlay}"
+      @click="close"
+    />
+  </div>
 </template>
 
 <script>

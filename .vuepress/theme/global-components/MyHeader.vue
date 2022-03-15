@@ -1,41 +1,62 @@
 <template>
-    <el-header
-        id="topHeader"
-        :style="{paddingLeft:headerLeft+'px'}"
-        class="top-header"
-        :class="{headerShadow:hasShadow}"
+  <el-header
+    id="topHeader"
+    :style="{paddingLeft:headerLeft+'px'}"
+    class="top-header"
+    :class="{headerShadow:hasShadow}"
+  >
+    <el-row
+      type="flex"
+      align="middle"
+      class="header-warp"
     >
-        <el-row type="flex" align="middle" class="header-warp">
-            <el-col :span="12">
-                <el-row type="flex" align="middle">
-                    <el-col :span="2">
-                        <el-button type="primary" @click="clickMenu" :circle="true">
-                            <i class="iconfont" :class="[iconName]"></i>
-                        </el-button>
-                    </el-col>
-                </el-row>
-            </el-col>
-            <el-col :span="20" :xs="{span:21}">
-                <div class="grid-content bg-purple-light">
-                    <el-row type="flex" align="middle" justify="end">
-                        <SearchBox/>
-
-                        <!-- repo link -->
-                        <a
-                            v-if="repoLink"
-                            :href="repoLink"
-                            class="repo-link"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            GitHub
-                            <OutboundLink/>
-                        </a>
-                    </el-row>
-                </div>
-            </el-col>
+      <el-col :span="12">
+        <el-row
+          type="flex"
+          align="middle"
+        >
+          <el-col :span="2">
+            <el-button
+              type="primary"
+              :circle="true"
+              @click="clickMenu"
+            >
+              <i
+                class="iconfont"
+                :class="[iconName]"
+              />
+            </el-button>
+          </el-col>
         </el-row>
-    </el-header>
+      </el-col>
+      <el-col
+        :span="20"
+        :xs="{span:21}"
+      >
+        <div class="grid-content bg-purple-light">
+          <el-row
+            type="flex"
+            align="middle"
+            justify="end"
+          >
+            <SearchBox />
+
+            <!-- repo link -->
+            <a
+              v-if="repoLink"
+              :href="repoLink"
+              class="repo-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub
+              <OutboundLink />
+            </a>
+          </el-row>
+        </div>
+      </el-col>
+    </el-row>
+  </el-header>
 </template>
 
 <script>
@@ -92,6 +113,12 @@ export default {
       }
       return this.showIcon ? 'icon-caidan' : 'icon-guanbi'
     },
+  },
+  mounted () {
+    this.bindScrl()
+  },
+  activated () {
+    this.bindScrl()
   },
   methods: {
     clickMenu () {
@@ -172,12 +199,6 @@ export default {
         }
       }
     },
-  },
-  mounted () {
-    this.bindScrl()
-  },
-  activated () {
-    this.bindScrl()
   },
 }
 </script>
