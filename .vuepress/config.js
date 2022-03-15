@@ -6,7 +6,7 @@ module.exports = {
     title: 'BuptStEve\'s Blog',
     description: 'Talk is cheap show me the offer!',
     head: [
-        ['link', { rel: 'icon', href: `/favicon.ico` }],
+        ['link', { rel: 'icon', href: '/favicon.ico' }],
     ],
     locales: {
         '/': { lang: 'zh-CN', title: name, description },
