@@ -1,15 +1,28 @@
 <template>
-    <el-main class="my-main" :style="{marginLeft:mainLeft+'px'}">
-        <content-header :content="content"/>
-        <keep-alive>
-            <component :is="whichComponent" :content="content"/>
-        </keep-alive>
-    </el-main>
+  <el-main
+    class="my-main"
+    :style="{marginLeft:mainLeft+'px'}"
+  >
+    <content-header :content="content" />
+    <keep-alive>
+      <component
+        :is="whichComponent"
+        :content="content"
+      />
+    </keep-alive>
+  </el-main>
 </template>
 
 <script>
 export default {
   name: 'Main',
+  components: {
+    All: () => import('imComponents/All'),
+    Tags: () => import('imComponents/Tags'),
+    Home: () => import('imComponents/Home'),
+    Posts: () => import('imComponents/Posts'),
+    About: () => import('imComponents/About'),
+  },
   props: {
     isHide: {
       type: Boolean,
@@ -19,13 +32,6 @@ export default {
       type: Array,
       default: () => [],
     },
-  },
-  components: {
-    All: () => import('imComponents/All'),
-    Tags: () => import('imComponents/Tags'),
-    Home: () => import('imComponents/Home'),
-    Posts: () => import('imComponents/Posts'),
-    About: () => import('imComponents/About'),
   },
   computed: {
     whichComponent () {

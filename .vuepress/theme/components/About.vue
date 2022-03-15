@@ -1,18 +1,22 @@
 <template>
-    <el-row type="flex" justify="center" class="post-content">
-        <el-col
-            :xs="{span:24}"
-            :sm="{span:23}"
-            :md="{span:23}"
-            :lg="{span:23}"
-            class="post-card"
-            id="post-card"
-            v-if="showAbout"
-        >
-            <Content></Content>
-            <span id="footerPost"></span>
-        </el-col>
-    </el-row>
+  <el-row
+    type="flex"
+    justify="center"
+    class="post-content"
+  >
+    <el-col
+      v-if="showAbout"
+      id="post-card"
+      :xs="{span:24}"
+      :sm="{span:23}"
+      :md="{span:23}"
+      :lg="{span:23}"
+      class="post-card"
+    >
+      <Content />
+      <span id="footerPost" />
+    </el-col>
+  </el-row>
 </template>
 
 <script>

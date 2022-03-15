@@ -1,7 +1,13 @@
 <template>
-    <el-button type="primary" @click="GoTop" :class="{show:show}" :circle="true" class="gotop-btn">
-        <i class="el-icon-arrow-up"></i>
-    </el-button>
+  <el-button
+    type="primary"
+    :class="{show:show}"
+    :circle="true"
+    class="gotop-btn"
+    @click="GoTop"
+  >
+    <i class="el-icon-arrow-up" />
+  </el-button>
 </template>
 
 <script>

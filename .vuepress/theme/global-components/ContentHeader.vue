@@ -1,22 +1,23 @@
 <template>
-    <div class="content-header index-header">
-        <div class="container fade-scale in">
-            <h1 id="conentHeader" class="title" :class="{'post-content-header':isPosts}">{{title}}</h1>
-            <h5 class="subtitle">{{description}}</h5>
-        </div>
+  <div class="content-header index-header">
+    <div class="container fade-scale in">
+      <h1
+        id="conentHeader"
+        class="title"
+        :class="{'post-content-header':isPosts}"
+      >
+        {{ title }}
+      </h1>
+      <h5 class="subtitle">
+        {{ description }}
+      </h5>
     </div>
+  </div>
 </template>
 
 <script>
 export default {
   name: 'FixedHeader',
-  data () {
-    return {
-      title: '',
-      isPosts: false,
-      description: '',
-    }
-  },
   props: {
     content: {
       type: Array,
@@ -24,6 +25,13 @@ export default {
         return []
       },
     },
+  },
+  data () {
+    return {
+      title: '',
+      isPosts: false,
+      description: '',
+    }
   },
   computed: {
     routePath () {

@@ -1,55 +1,72 @@
 <template>
-    <div class="tag-content" v-if="showTags">
-        <el-row type="flex" align="center" justify="center">
-            <el-col
-                :span="20"
-                :xs="{span:23}"
-                :sm="{span:22}"
-                :md="{span:22}"
-                :lg="{span:20}"
-                class="tag-card"
+  <div
+    v-if="showTags"
+    class="tag-content"
+  >
+    <el-row
+      type="flex"
+      align="center"
+      justify="center"
+    >
+      <el-col
+        :span="20"
+        :xs="{span:23}"
+        :sm="{span:22}"
+        :md="{span:22}"
+        :lg="{span:20}"
+        class="tag-card"
+      >
+        <el-tag
+          v-for="tag in tagsList"
+          :key="tag[0].name"
+          size="medium"
+          :hit="true"
+          @click="whatTag"
+        >
+          {{ tag[0].name }}
+        </el-tag>
+      </el-col>
+    </el-row>
+    <div
+      v-if="hasTagsList.length"
+      class="tag-warp"
+    >
+      <el-row
+        type="flex"
+        align="center"
+        justify="center"
+        class="post-list"
+      >
+        <el-col
+          v-for="post in hasTagsList"
+          :key="post.title"
+          :span="10"
+          :xs="{span:23}"
+          :sm="{span:11}"
+          :md="{span:11}"
+          :lg="{span:10}"
+          class="list"
+        >
+          <el-card>
+            <div class="post-title-time ellipsis">
+              {{ post.lastUpdated }}
+            </div>
+            <router-link
+              :to="post.path"
+              class="post-title-link"
             >
-                <el-tag
-                    @click="whatTag"
-                    v-for="tag in tagsList"
-                    :key="tag[0].name"
-                    size="medium"
-                    :hit="true"
-                >{{tag[0].name}}</el-tag>
-            </el-col>
-        </el-row>
-        <div v-if="hasTagsList.length" class="tag-warp">
-            <el-row type="flex" align="center" justify="center" class="post-list">
-                <el-col
-                    v-for="post in hasTagsList"
-                    :key="post.title"
-                    :span="10"
-                    :xs="{span:23}"
-                    :sm="{span:11}"
-                    :md="{span:11}"
-                    :lg="{span:10}"
-                    class="list"
-                >
-                    <el-card>
-                        <div class="post-title-time ellipsis">{{post.lastUpdated}}</div>
-                        <router-link :to="post.path" class="post-title-link">{{post.title}}</router-link>
-                    </el-card>
-                </el-col>
-            </el-row>
-        </div>
+              {{ post.title }}
+            </router-link>
+          </el-card>
+        </el-col>
+      </el-row>
     </div>
+  </div>
 </template>
 
 <script>
 export default {
   name: 'Tags',
-  data () {
-    return {
-      tagName: '',
-      tagsList: {},
-      showTags: false,
-    }
-  },
   props: {
     content: {
       type: Array,
@@ -58,28 +75,19 @@ export default {
       },
     },
   },
+  data () {
+    return {
+      tagName: '',
+      tagsList: {},
+      showTags: false,
+    }
+  },
   computed: {
     hasTagsList () {
       if (!this.tagsList[this.tagName]) {
         return []
       }
       return this.tagsList[this.tagName].slice(1)
-    },
-  },
-  methods: {
-    whatTag (e) {
-      this.tagName = e.target.innerText
-      if (typeof window === 'undefined') return
-      document.getElementById('conentHeader').innerText = e.target.innerText
-    },
-    checkRouter () {
-      if (this.$route.params.tag) {
-        this.tagName = this.$route.params.tag
-        if (typeof window === 'undefined') return
-        document.getElementById(
-          'conentHeader'
-        ).innerText = this.$route.params.tag
-      }
     },
   },
   watch: {
@@ -99,6 +107,22 @@ export default {
         this.tagsList = tagsList.default
       }
     )
+  },
+  methods: {
+    whatTag (e) {
+      this.tagName = e.target.innerText
+      if (typeof window === 'undefined') return
+      document.getElementById('conentHeader').innerText = e.target.innerText
+    },
+    checkRouter () {
+      if (this.$route.params.tag) {
+        this.tagName = this.$route.params.tag
+        if (typeof window === 'undefined') return
+        document.getElementById(
+          'conentHeader'
+        ).innerText = this.$route.params.tag
+      }
+    },
   },
 }
 </script>

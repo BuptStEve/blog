@@ -11,20 +11,21 @@
   },
   "dependencies": {
     "babel-eslint": "^10.1.0",
-    "babel-plugin-component": "^1.1.1",
-    "core-js": "2.x",
     "dayjs": "^1.11.0",
     "element-ui": "^2.15.7",
-    "eslint": "^6.0.0",
-    "eslint-config-vue": "^2.0.2",
+    "vssue": "^1.4.8",
+    "vuepress": "^1.9.7"
+  },
+  "devDependencies": {
+    "babel-plugin-component": "^1.1.1",
+    "core-js": "2.x",
+    "eslint": "^6.8.0",
     "eslint-plugin-vue": "^5.2.3",
-    "gh-pages": "^2.2.0",
+    "gh-pages": "^3.2.3",
+    "lint-staged": "^12.3.5",
     "sass": "^1.49.9",
     "sass-loader": "^7.3.1",
-    "vssue": "^0.7.5",
-    "vue": "^2.5.17",
-    "vue-eslint-parser": "^8.3.0",
-    "vuepress": "^1.9.7"
+    "vue-eslint-parser": "^8.3.0"
   },
   "repository": {
     "type": "git",
