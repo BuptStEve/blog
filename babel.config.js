@@ -1,5 +1,4 @@
-module.export = {
-    presets: [['es2015', { modules: false }]],
+module.exports = {
     plugins: [
         [
             'component',
