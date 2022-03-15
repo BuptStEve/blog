@@ -42,143 +42,143 @@
 import SearchBox from '@SearchBox'
 
 export default {
-    name: 'Header',
-    components: { SearchBox },
-    props: {
-        showIcon: {
-            type: Boolean,
-            default: false,
-        },
-        restaurants: {
-            type: Array,
-            default () {
-                return []
-            },
-        },
+  name: 'Header',
+  components: { SearchBox },
+  props: {
+    showIcon: {
+      type: Boolean,
+      default: false,
     },
-    data () {
-        return {
-            headerLeft: 260,
-            searchVal: '',
-            hasShadow: false,
-            queryStrlen: 1,
-            hasResults: true,
-        }
+    restaurants: {
+      type: Array,
+      default () {
+        return []
+      },
     },
-    computed: {
-        repoLink () {
-            const { repo } = this.$site.themeConfig
-            if (repo) {
-                return /^https?:/.test(repo)
-                    ? repo
-                    : `https://github.com/${repo}`
-            }
+  },
+  data () {
+    return {
+      headerLeft: 260,
+      searchVal: '',
+      hasShadow: false,
+      queryStrlen: 1,
+      hasResults: true,
+    }
+  },
+  computed: {
+    repoLink () {
+      const { repo } = this.$site.themeConfig
+      if (repo) {
+        return /^https?:/.test(repo)
+          ? repo
+          : `https://github.com/${repo}`
+      }
 
-            return ''
-        },
-        placeholder () {
-            return this.$themeConfig.placeholder || ''
-        },
-        searchReply () {
-            return (
-                this.$themeConfig.searchReply ||
+      return ''
+    },
+    placeholder () {
+      return this.$themeConfig.placeholder || ''
+    },
+    searchReply () {
+      return (
+        this.$themeConfig.searchReply ||
                 '什么都没搜到，试一下其它搜索词~'
-            )
-        },
-        iconName () {
-            if (typeof window === 'undefined') return 'icon-caidan'
-            if (document.body.clientWidth <= 1200) {
-                return this.showIcon ? 'icon-guanbi' : 'icon-caidan'
-            }
-            return this.showIcon ? 'icon-caidan' : 'icon-guanbi'
-        },
+      )
     },
-    methods: {
-        clickMenu () {
-            this.$emit('clickMenu')
-            if (typeof window === 'undefined') return
-            if (document.body.clientWidth <= 1200) {
-                return
-            }
-            if (this.headerLeft === 65) {
-                this.headerLeft = 260
-            } else {
-                this.headerLeft = 65
-            }
-        },
-        querySearch (queryString, cb) {
-            this.hasResults = true
-            this.queryStrlen = queryString.length
-            var restaurants = this.restaurants
-            var results = queryString
-                ? restaurants.filter(this.createFilter(queryString))
-                : restaurants
-            if (results.length === 0) {
-                this.hasResults = false
-                results.push({
-                    title: this.searchReply,
-                    has: false,
-                })
-            }
-            cb(results)
-        },
-        createFilter (queryString) {
-            return restaurant => {
-                let searchIndex = restaurant.strippedContent
-                    .toLowerCase()
-                    .indexOf(queryString.toLowerCase())
+    iconName () {
+      if (typeof window === 'undefined') return 'icon-caidan'
+      if (document.body.clientWidth <= 1200) {
+        return this.showIcon ? 'icon-guanbi' : 'icon-caidan'
+      }
+      return this.showIcon ? 'icon-caidan' : 'icon-guanbi'
+    },
+  },
+  methods: {
+    clickMenu () {
+      this.$emit('clickMenu')
+      if (typeof window === 'undefined') return
+      if (document.body.clientWidth <= 1200) {
+        return
+      }
+      if (this.headerLeft === 65) {
+        this.headerLeft = 260
+      } else {
+        this.headerLeft = 65
+      }
+    },
+    querySearch (queryString, cb) {
+      this.hasResults = true
+      this.queryStrlen = queryString.length
+      var restaurants = this.restaurants
+      var results = queryString
+        ? restaurants.filter(this.createFilter(queryString))
+        : restaurants
+      if (results.length === 0) {
+        this.hasResults = false
+        results.push({
+          title: this.searchReply,
+          has: false,
+        })
+      }
+      cb(results)
+    },
+    createFilter (queryString) {
+      return restaurant => {
+        let searchIndex = restaurant.strippedContent
+          .toLowerCase()
+          .indexOf(queryString.toLowerCase())
 
-                if (searchIndex > -1) {
-                    restaurant.searchIndex = searchIndex
-                    return true
-                } else {
-                    return false
-                }
-            }
-        },
-        handleSelect (item) {
-            if (item.title === this.searchReply) return
-            this.$router.push(item.path)
-        },
-        getScrollTop () {
-            var scrollPos
-            if (typeof window === 'undefined') return
-            if (window.pageYOffset) {
-                scrollPos = window.pageYOffset
-            } else if (
-                document.compatMode &&
+        if (searchIndex > -1) {
+          restaurant.searchIndex = searchIndex
+          return true
+        } else {
+          return false
+        }
+      }
+    },
+    handleSelect (item) {
+      if (item.title === this.searchReply) return
+      this.$router.push(item.path)
+    },
+    getScrollTop () {
+      var scrollPos
+      if (typeof window === 'undefined') return
+      if (window.pageYOffset) {
+        scrollPos = window.pageYOffset
+      } else if (
+        document.compatMode &&
                 document.compatMode !== 'BackCompat'
-            ) {
-                scrollPos = document.documentElement.scrollTop
-            } else if (document.body) {
-                scrollPos = document.body.scrollTop
-            }
-            return scrollPos
-        },
-        bindScrl () {
-            const _this = this
-            let topScroll = _this.getScrollTop()
-            if (topScroll > 190) {
-                this.hasShadow = true
-            } else {
-                this.hasShadow = false
-            }
-            window.onscroll = function () {
-                let topScroll = _this.getScrollTop()
-                if (topScroll > 190) {
-                    _this.hasShadow = true
-                } else {
-                    _this.hasShadow = false
-                }
-            }
-        },
+      ) {
+        scrollPos = document.documentElement.scrollTop
+      } else if (document.body) {
+        scrollPos = document.body.scrollTop
+      }
+      return scrollPos
     },
-    mounted () {
-        this.bindScrl()
+    bindScrl () {
+      const _this = this
+      let topScroll = _this.getScrollTop()
+      if (topScroll > 190) {
+        this.hasShadow = true
+      } else {
+        this.hasShadow = false
+      }
+      window.onscroll = function () {
+        let topScroll = _this.getScrollTop()
+        if (topScroll > 190) {
+          _this.hasShadow = true
+        } else {
+          _this.hasShadow = false
+        }
+      }
     },
-    activated () {
-        this.bindScrl()
-    },
+  },
+  mounted () {
+    this.bindScrl()
+  },
+  activated () {
+    this.bindScrl()
+  },
 }
 </script>
 

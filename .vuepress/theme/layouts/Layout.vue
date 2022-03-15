@@ -20,32 +20,32 @@
 
 <script>
 export default {
-    name: 'Layout',
-    data: function () {
-        return {
-            isHide: false,
-            needOverlay: false,
-            content: [],
-        }
+  name: 'Layout',
+  data: function () {
+    return {
+      isHide: false,
+      needOverlay: false,
+      content: [],
+    }
+  },
+  created () {
+    import(/* webpackChunkName: "content" */ 'imData/content.js').then((content) => {
+      this.content = content.default
+    })
+  },
+  methods: {
+    clickMenu () {
+      this.isHide = !this.isHide
+      if (typeof window === 'undefined') return
+      if (document.body.clientWidth <= 1200) {
+        this.needOverlay = !this.needOverlay
+      }
     },
-    created () {
-        import(/* webpackChunkName: "content" */ 'imData/content.js').then((content) => {
-            this.content = content.default
-        })
+    close () {
+      this.needOverlay = !this.needOverlay
+      this.isHide = !this.isHide
     },
-    methods: {
-        clickMenu () {
-            this.isHide = !this.isHide
-            if (typeof window === 'undefined') return
-            if (document.body.clientWidth <= 1200) {
-                this.needOverlay = !this.needOverlay
-            }
-        },
-        close () {
-            this.needOverlay = !this.needOverlay
-            this.isHide = !this.isHide
-        },
-    },
+  },
 }
 </script>
 

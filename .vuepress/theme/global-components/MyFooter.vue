@@ -45,19 +45,19 @@
 
 <script>
 export default {
-    name: 'MyFooter',
-    props: {
-        isHide: {
-            type: Boolean,
-            default: false,
-        },
-        content: {
-            type: Array,
-            default () {
-                return []
-            },
-        },
+  name: 'MyFooter',
+  props: {
+    isHide: {
+      type: Boolean,
+      default: false,
     },
+    content: {
+      type: Array,
+      default () {
+        return []
+      },
+    },
+  },
 }
 </script>
 

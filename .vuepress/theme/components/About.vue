@@ -17,23 +17,23 @@
 
 <script>
 export default {
-    name: 'About',
-    props: {
-        content: {
-            type: Array,
-            default: () => {
-                return []
-            },
-        },
+  name: 'About',
+  props: {
+    content: {
+      type: Array,
+      default: () => {
+        return []
+      },
     },
-    data () {
-        return {
-            showAbout: false,
-        }
-    },
-    mounted () {
-        this.showAbout = true
-    },
+  },
+  data () {
+    return {
+      showAbout: false,
+    }
+  },
+  mounted () {
+    this.showAbout = true
+  },
 }
 </script>
 

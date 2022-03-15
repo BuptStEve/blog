@@ -1,23 +1,23 @@
 <script>
 import 'imStyles/vssue.styl'
 export default {
-    name: 'MyVssue',
-    render: function (h) {
-        const name =
+  name: 'MyVssue',
+  render: function (h) {
+    const name =
             process.env.NODE_ENV === 'development'
-                ? 'development'
-                : 'production'
+              ? 'development'
+              : 'production'
 
-        return h('Vssue', {
-            props: {
-                title: this.$page.title,
-                options: this.$themeConfig.vssue[name],
-            },
-            class: {
-                'vssue-warp': 'vssue-warp',
-            },
-        })
-    },
+    return h('Vssue', {
+      props: {
+        title: this.$page.title,
+        options: this.$themeConfig.vssue[name],
+      },
+      class: {
+        'vssue-warp': 'vssue-warp',
+      },
+    })
+  },
 }
 </script>
 

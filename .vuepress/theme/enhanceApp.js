@@ -9,6 +9,6 @@ import 'imStyles/code.styl'
 import 'imStyles/content.styl'
 
 export default ({ Vue, router }) => {
-    Vue.use(routes, { router })
-    Vue.use(importElement)
+  Vue.use(routes, { router })
+  Vue.use(importElement)
 }

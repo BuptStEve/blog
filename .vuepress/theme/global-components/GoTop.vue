@@ -6,43 +6,43 @@
 
 <script>
 export default {
-    name: 'GoTop',
-    data () {
-        return {
-            show: false,
+  name: 'GoTop',
+  data () {
+    return {
+      show: false,
+    }
+  },
+  mounted () {
+    this.hasShow()
+  },
+  methods: {
+    hasShow () {
+      const _this = this
+      window.addEventListener('scroll', function () {
+        let h = _this.getScrollTop()
+        if (h > 400) {
+          _this.show = true
+        } else {
+          _this.show = false
         }
+      })
     },
-    mounted () {
-        this.hasShow()
+    GoTop () {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
     },
-    methods: {
-        hasShow () {
-            const _this = this
-            window.addEventListener('scroll', function () {
-                let h = _this.getScrollTop()
-                if (h > 400) {
-                    _this.show = true
-                } else {
-                    _this.show = false
-                }
-            })
-        },
-        GoTop () {
-            window.scrollTo({ top: 0, behavior: 'smooth' })
-        },
-        getScrollTop () {
-            var scrollPos
-            if (typeof window === 'undefined') return
-            if (window.pageYOffset) {
-                scrollPos = window.pageYOffset
-            } else if (document.compatMode && document.compatMode !== 'BackCompat') {
-                scrollPos = document.documentElement.scrollTop
-            } else if (document.body) {
-                scrollPos = document.body.scrollTop
-            }
-            return scrollPos
-        },
+    getScrollTop () {
+      var scrollPos
+      if (typeof window === 'undefined') return
+      if (window.pageYOffset) {
+        scrollPos = window.pageYOffset
+      } else if (document.compatMode && document.compatMode !== 'BackCompat') {
+        scrollPos = document.documentElement.scrollTop
+      } else if (document.body) {
+        scrollPos = document.body.scrollTop
+      }
+      return scrollPos
     },
+  },
 }
 </script>
 

@@ -51,22 +51,22 @@
 
 <script>
 export default {
-    name: 'Aside',
-    props: {
-        isHide: {
-            type: Boolean,
-            default: false,
-        },
+  name: 'Aside',
+  props: {
+    isHide: {
+      type: Boolean,
+      default: false,
     },
-    methods: {
-        select (key) {
-            if (key === '/github/') {
-                window.open(this.$themeConfig.github)
-            } else {
-                this.$router.push(key)
-            }
-        },
+  },
+  methods: {
+    select (key) {
+      if (key === '/github/') {
+        window.open(this.$themeConfig.github)
+      } else {
+        this.$router.push(key)
+      }
     },
+  },
 }
 </script>
 

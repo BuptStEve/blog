@@ -9,67 +9,67 @@
 
 <script>
 export default {
-    name: 'FixedHeader',
-    data () {
-        return {
-            title: '',
-            isPosts: false,
-            description: '',
-        }
+  name: 'FixedHeader',
+  data () {
+    return {
+      title: '',
+      isPosts: false,
+      description: '',
+    }
+  },
+  props: {
+    content: {
+      type: Array,
+      default: () => {
+        return []
+      },
     },
-    props: {
-        content: {
-            type: Array,
-            default: () => {
-                return []
-            },
-        },
+  },
+  computed: {
+    routePath () {
+      return this.$route.path.slice(1, 6)
     },
-    computed: {
-        routePath () {
-            return this.$route.path.slice(1, 6)
-        },
-    },
-    watch: {
-        routePath () {
-            this.isPosts = this.routePath === 'posts'
+  },
+  watch: {
+    routePath () {
+      this.isPosts = this.routePath === 'posts'
 
-            switch (this.routePath) {
-            case 'posts':
-                this.title = this.$page.title
-                this.description = this.$page.lastUpdated
-                    ? '最后更新时间：' + this.$page.lastUpdated
-                    : ''
-                break
-            case 'all/':
-                this.title = this.$themeConfig.menus.all || '时间归档'
-                if (this.content.length === 0) {
-                    return (this.description = '')
-                }
-                setTimeout(() => {
-                    this.description =
+      switch (this.routePath) {
+      case 'posts':
+        this.title = this.$page.title
+        this.description = this.$page.lastUpdated
+          ? '最后更新时间：' + this.$page.lastUpdated
+          : ''
+        break
+      case 'all/':
+        this.title = this.$themeConfig.menus.all || '时间归档'
+        if (this.content.length === 0) {
+          return (this.description = '')
+        }
+        setTimeout(() => {
+          this.description =
                             this.content[this.content.length - 1].lastUpdated.slice(0, 7) +
                             '~' +
                             this.content[0].lastUpdated.slice(0, 7) +
                             ' ===>>> 共' +
                             this.content.length +
                             '篇'
-                }, 20)
-                break
-            case 'tags/':
-                this.title = ''
-                this.description = ''
-                break
-            case 'about':
-                this.title = this.$themeConfig.menus.about || '自我介绍'
-                this.description = ''
-                break
-            default:
-                this.title = this.$site.title || '欢迎光临'
-                this.description = this.$site.description || '期待与你的交流'
-            }
-        },
+        }, 20)
+        break
+      case 'tags/':
+        this.title = ''
+        this.description = ''
+        break
+      case 'about':
+        this.title = this.$themeConfig.menus.about || '自我介绍'
+        this.description = ''
+        break
+      default:
+        this.title = this.$site.title || '欢迎光临'
+        this.description = this.$site.description || '期待与你的交流'
+      }
     },
+  },
 }
 </script>
 
