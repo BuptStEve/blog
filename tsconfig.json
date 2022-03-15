@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
+    "allowJs": true,
     "module": "esnext",
     "baseUrl": "./",
     "moduleResolution": "node",
@@ -12,5 +13,14 @@
       "dom.iterable",
       "scripthost"
     ]
-  }
+  },
+  "include": [
+    ".vuepress/**/*.js",
+    ".vuepress/**/*.ts",
+    ".vuepress/**/*.tsx",
+    ".vuepress/**/*.vue",
+    ".vuepress/**/*.d.ts",
+    "babel.config.js",
+    ".eslintrc.js"
+  ]
 }
