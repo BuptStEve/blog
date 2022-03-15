@@ -61,40 +61,40 @@
 
 <script>
 export default {
-    name: 'Home',
-    data () {
-        return {
-            currentPage: 1,
-        }
+  name: 'Home',
+  data () {
+    return {
+      currentPage: 1,
+    }
+  },
+  props: {
+    content: {
+      type: Array,
+      default () {
+        return []
+      },
     },
-    props: {
-        content: {
-            type: Array,
-            default () {
-                return []
-            },
-        },
+  },
+  computed: {
+    pagination () {
+      return +this.$themeConfig.pagination || 5
     },
-    computed: {
-        pagination () {
-            return +this.$themeConfig.pagination || 5
-        },
-        posts () {
-            return this.content.slice(
-                this.pagination * this.currentPage - this.pagination,
-                this.pagination * this.currentPage
-            )
-        },
+    posts () {
+      return this.content.slice(
+        this.pagination * this.currentPage - this.pagination,
+        this.pagination * this.currentPage
+      )
     },
-    methods: {
-        changePage (index) {
-            this.currentPage = index
-            window.scrollTo({ top: 0 })
-        },
-        toTaglist (e) {
-            this.$router.push('/tags/' + e.target.innerText)
-        },
+  },
+  methods: {
+    changePage (index) {
+      this.currentPage = index
+      window.scrollTo({ top: 0 })
     },
+    toTaglist (e) {
+      this.$router.push('/tags/' + e.target.innerText)
+    },
+  },
 }
 </script>
 

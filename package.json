@@ -1,35 +1,35 @@
 {
-    "name": "blog",
-    "version": "2.0.0",
-    "description": "✍️ StEve Young 的个人博客",
-    "private": true,
-    "scripts": {
-        "docs": "vuepress dev ./",
-        "docs:build": "vuepress build ./",
-        "lint": "eslint --fix ./ .vuepress/ --ext .js,.vue --ignore-path .gitignore",
-        "deploy": "npm run docs:build && gh-pages -m \"[ci skip]\" -d dist/"
-    },
-    "dependencies": {
-        "babel-eslint": "^10.1.0",
-        "babel-plugin-component": "^1.1.1",
-        "core-js": "2.x",
-        "dayjs": "^1.11.0",
-        "element-ui": "^2.15.7",
-        "eslint": "^6.0.0",
-        "eslint-config-vue": "^2.0.2",
-        "eslint-plugin-vue": "^5.2.3",
-        "gh-pages": "^2.2.0",
-        "sass": "^1.49.9",
-        "sass-loader": "^7.3.1",
-        "vssue": "^0.7.5",
-        "vue": "^2.5.17",
-        "vue-eslint-parser": "^8.3.0",
-        "vuepress": "^1.9.7"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/BuptStEve/blog.git"
-    },
-    "homepage": "https://buptsteve.github.io/blog/",
-    "author": "StEve Young"
+  "name": "blog",
+  "version": "2.0.0",
+  "description": "✍️ StEve Young 的个人博客",
+  "private": true,
+  "scripts": {
+    "docs": "vuepress dev ./",
+    "docs:build": "vuepress build ./",
+    "lint": "eslint --fix ./ .vuepress/ --ext .js,.vue --ignore-path .gitignore",
+    "deploy": "npm run docs:build && gh-pages -m \"[ci skip]\" -d dist/"
+  },
+  "dependencies": {
+    "babel-eslint": "^10.1.0",
+    "babel-plugin-component": "^1.1.1",
+    "core-js": "2.x",
+    "dayjs": "^1.11.0",
+    "element-ui": "^2.15.7",
+    "eslint": "^6.0.0",
+    "eslint-config-vue": "^2.0.2",
+    "eslint-plugin-vue": "^5.2.3",
+    "gh-pages": "^2.2.0",
+    "sass": "^1.49.9",
+    "sass-loader": "^7.3.1",
+    "vssue": "^0.7.5",
+    "vue": "^2.5.17",
+    "vue-eslint-parser": "^8.3.0",
+    "vuepress": "^1.9.7"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BuptStEve/blog.git"
+  },
+  "homepage": "https://buptsteve.github.io/blog/",
+  "author": "StEve Young"
 }

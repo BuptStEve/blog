@@ -42,64 +42,64 @@
 
 <script>
 export default {
-    name: 'Tags',
-    data () {
-        return {
-            tagName: '',
-            tagsList: {},
-            showTags: false,
-        }
+  name: 'Tags',
+  data () {
+    return {
+      tagName: '',
+      tagsList: {},
+      showTags: false,
+    }
+  },
+  props: {
+    content: {
+      type: Array,
+      default: () => {
+        return []
+      },
     },
-    props: {
-        content: {
-            type: Array,
-            default: () => {
-                return []
-            },
-        },
+  },
+  computed: {
+    hasTagsList () {
+      if (!this.tagsList[this.tagName]) {
+        return []
+      }
+      return this.tagsList[this.tagName].slice(1)
     },
-    computed: {
-        hasTagsList () {
-            if (!this.tagsList[this.tagName]) {
-                return []
-            }
-            return this.tagsList[this.tagName].slice(1)
-        },
+  },
+  methods: {
+    whatTag (e) {
+      this.tagName = e.target.innerText
+      if (typeof window === 'undefined') return
+      document.getElementById('conentHeader').innerText = e.target.innerText
     },
-    methods: {
-        whatTag (e) {
-            this.tagName = e.target.innerText
-            if (typeof window === 'undefined') return
-            document.getElementById('conentHeader').innerText = e.target.innerText
-        },
-        checkRouter () {
-            if (this.$route.params.tag) {
-                this.tagName = this.$route.params.tag
-                if (typeof window === 'undefined') return
-                document.getElementById(
-                    'conentHeader'
-                ).innerText = this.$route.params.tag
-            }
-        },
+    checkRouter () {
+      if (this.$route.params.tag) {
+        this.tagName = this.$route.params.tag
+        if (typeof window === 'undefined') return
+        document.getElementById(
+          'conentHeader'
+        ).innerText = this.$route.params.tag
+      }
     },
-    watch: {
-        $route (to) {
-            if (to.params.tag) {
-                this.tagName = to.params.tag
-                if (typeof window === 'undefined') return
-                document.getElementById('conentHeader').innerText = to.params.tag
-            }
-        },
+  },
+  watch: {
+    $route (to) {
+      if (to.params.tag) {
+        this.tagName = to.params.tag
+        if (typeof window === 'undefined') return
+        document.getElementById('conentHeader').innerText = to.params.tag
+      }
     },
-    created () {
-        this.checkRouter()
-        import(/* webpackChunkName: "tagsList" */ 'imData/tagsList.js').then(
-            tagsList => {
-                this.showTags = true
-                this.tagsList = tagsList.default
-            }
-        )
-    },
+  },
+  created () {
+    this.checkRouter()
+    import(/* webpackChunkName: "tagsList" */ 'imData/tagsList.js').then(
+      tagsList => {
+        this.showTags = true
+        this.tagsList = tagsList.default
+      }
+    )
+  },
 }
 </script>
 

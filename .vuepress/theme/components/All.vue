@@ -41,35 +41,35 @@
 
 <script>
 export default {
-    name: 'All',
-    data () {
-        return {
-            poList: [],
-            showTags: false,
-            showPoList: false,
-        }
+  name: 'All',
+  data () {
+    return {
+      poList: [],
+      showTags: false,
+      showPoList: false,
+    }
+  },
+  props: {
+    content: {
+      type: Array,
+      default: () => {
+        return []
+      },
     },
-    props: {
-        content: {
-            type: Array,
-            default: () => {
-                return []
-            },
-        },
+  },
+  methods: {
+    toTaglist (e) {
+      this.$router.push('/tags/' + e.target.innerText)
     },
-    methods: {
-        toTaglist (e) {
-            this.$router.push('/tags/' + e.target.innerText)
-        },
-    },
-    created () {
-        import(/* webpackChunkName: "poList" */ 'imData/poList.js').then(
-            poList => {
-                this.showPoList = true
-                this.poList = poList.default
-            }
-        )
-    },
+  },
+  created () {
+    import(/* webpackChunkName: "poList" */ 'imData/poList.js').then(
+      poList => {
+        this.showPoList = true
+        this.poList = poList.default
+      }
+    )
+  },
 }
 </script>
 

@@ -6,12 +6,12 @@
 
 <script>
 export default {
-    name: 'GoTop',
-    methods: {
-        OpenToc () {
-            this.$emit('toc')
-        },
+  name: 'GoTop',
+  methods: {
+    OpenToc () {
+      this.$emit('toc')
     },
+  },
 }
 </script>
 
