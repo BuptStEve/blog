@@ -36,22 +36,22 @@ module.exports = (options, ctx) => ({
   },
   alias: {
     imData: path.resolve(__dirname, 'data'),
-    imUntil: path.resolve(__dirname, 'until'),
     imStyles: path.resolve(__dirname, 'styles'),
-    imRouter: path.resolve(__dirname, 'router'),
     imComponents: path.resolve(__dirname, 'components'),
   },
   async ready () {
     // 排序函数
     const postsSorter = (prev, next) => {
-      const prevTime =
-                new Date(prev.frontmatter.date).getTime() ||
-                new Date(prev.lastUpdated).getTime() ||
-                new Date().getTime()
-      const nextTime =
-                new Date(next.frontmatter.date).getTime() ||
-                new Date(next.lastUpdated).getTime() ||
-                new Date().getTime()
+      const prevTime = (
+        new Date(prev.frontmatter.date).getTime() ||
+        new Date(prev.lastUpdated).getTime() ||
+        new Date().getTime()
+      )
+      const nextTime = (
+        new Date(next.frontmatter.date).getTime() ||
+        new Date(next.lastUpdated).getTime() ||
+        new Date().getTime()
+      )
       return prevTime - nextTime > 0 ? -1 : 1
     }
     const { pages } = ctx
@@ -82,17 +82,19 @@ module.exports = (options, ctx) => ({
       _strippedContent = _strippedContent
         .replace(/[\n\r]/g, ' ')
         .replace(/\s+/, ' ')
-      excerpt =
-                excerpt ||
-                (_strippedContent.slice(0, 200)
-                  ? _strippedContent.slice(0, 200) + '......'
-                  : false) ||
-                ''
+      excerpt = (
+        excerpt ||
+        (_strippedContent.slice(0, 200)
+          ? _strippedContent.slice(0, 200) + '......'
+          : false) ||
+        ''
+      )
 
-      lastUpdated =
-                val.frontmatter.date ||
-                lastUpdated ||
-                dayjs().format('YYYY-MM-DD HH:mm:ss')
+      lastUpdated = (
+        val.frontmatter.date ||
+        lastUpdated ||
+        dayjs().format('YYYY-MM-DD HH:mm:ss')
+      )
       lastUpdated = changeDate(lastUpdated)
       tags = tags || ''
       title = title || ''
@@ -117,8 +119,8 @@ module.exports = (options, ctx) => ({
       t.lastUpdated = lastUpdated
       t.tags = tags
       t.id = index
-      t.title = title
       t.path = path
+      t.title = title
 
       if (!tags) {
         if (!tagsList['未分类']) {
