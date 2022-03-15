@@ -130,12 +130,12 @@ export default {
       this.offsetList.splice(0, this.offsetList.length)
       this.allH.splice(0, this.allH.length)
       if (typeof window === 'undefined') return
-      if (!document.querySelector('.content,default')) {
+      if (!document.querySelector('.content__default')) {
         return
       }
       let a = []
       let allH = document
-        .querySelector('.content,default')
+        .querySelector('.content__default')
         .querySelectorAll('h1,h2,h3,h4,h5,h6')
       if (allH.length === 0) {
         return
