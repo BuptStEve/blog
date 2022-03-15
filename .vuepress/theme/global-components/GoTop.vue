@@ -18,7 +18,7 @@ export default {
     methods: {
         hasShow () {
             const _this = this
-            window.addEventListener('scroll', function (e) {
+            window.addEventListener('scroll', function () {
                 let h = _this.getScrollTop()
                 if (h > 400) {
                     _this.show = true

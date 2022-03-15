@@ -83,7 +83,7 @@ export default {
         },
     },
     watch: {
-        $route (to, from) {
+        $route (to) {
             if (to.params.tag) {
                 this.tagName = to.params.tag
                 if (typeof window === 'undefined') return

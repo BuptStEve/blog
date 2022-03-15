@@ -209,7 +209,7 @@ export default {
             window.addEventListener(
                 'scroll',
                 _this.throttle(
-                    function (e) {
+                    function () {
                         if (_this.$route.path.slice(0, 7) !== '/posts/') return
                         let h = _this.getScrollTop()
                         for (let i = 0, len = _this.allH.length; i < len; i++) {
@@ -246,7 +246,7 @@ export default {
         },
     },
     watch: {
-        $route (to, from) {
+        $route (to) {
             if (to.path.slice(0, 7) === '/posts/') {
                 this.getPageIndex()
                 setTimeout(() => {
