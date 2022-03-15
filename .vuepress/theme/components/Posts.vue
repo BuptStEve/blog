@@ -64,11 +64,10 @@
             <i class="el-icon-arrow-left" /> Prev
           </router-link>
           <router-link
-            tag="p"
             :to="content[prevPost].path||'/'"
             class="nav-title"
           >
-            {{ content[prevPost].title }}
+            <p>{{ content[prevPost].title }}</p>
           </router-link>
         </div>
       </el-col>
@@ -83,11 +82,10 @@
             <i class="el-icon-arrow-right" />
           </router-link>
           <router-link
-            tag="p"
             :to="content[nextPost].path||'/'"
             class="nav-title"
           >
-            {{ content[nextPost].title }}
+            <p>{{ content[nextPost].title }}</p>
           </router-link>
         </div>
       </el-col>
