@@ -1,7 +1,19 @@
-const { name, description } = require('../package.json')
+import { DefaultThemeConfig, defineConfig4CustomTheme } from 'vuepress/config';
+import { name, description } from '../package.json'
 
-module.exports = {
-  base: '/' + name + '/',
+interface MyThemeConfig extends DefaultThemeConfig {
+  email: string;
+  github: string;
+  brand: string;
+  avatar: string;
+  author: string;
+  pagination: string;
+  vssue: Record<string, unknown>;
+  menus: Record<string, string>;
+}
+
+export default defineConfig4CustomTheme<MyThemeConfig>({
+  base: `/${name}/`,
   dest: './dist',
   title: 'BuptStEve\'s Blog',
   description: 'Talk is cheap show me the offer!',
@@ -51,10 +63,4 @@ module.exports = {
       about: '自我介绍',
     },
   },
-  serviceWorker: {
-    updatePopup: {
-      message: 'New content is available.',
-      buttonText: 'Refresh',
-    },
-  },
-}
+});

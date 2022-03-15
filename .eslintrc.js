@@ -9,7 +9,10 @@ module.exports = {
     'plugin:vue/recommended',
   ],
   parserOptions: {
-    parser: 'babel-eslint',
+    parser: '@typescript-eslint/parser',
+    project: 'tsconfig.json',
+    sourceType: 'module',
+    extraFileExtensions: ['.vue'],
   },
   rules: {
     quotes: [2, 'single'],
