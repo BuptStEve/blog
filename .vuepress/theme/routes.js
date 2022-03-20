@@ -1,4 +1,4 @@
-const Layout = () => import('../layouts/Layout.vue')
+import Layout from './layouts/Layout.vue'
 
 const install = (Vue, { router }) => {
   const routes = ['/', '/all/', '/about/', '/tags/', '/tags/:tag', '/posts/:post', '/drafts/:post']

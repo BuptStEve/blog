@@ -173,6 +173,12 @@ module.exports = (options, ctx) => ({
     const dataPath = path.resolve(__dirname, 'data')
     console.log('正在写入本地数据,加快在客户端的速度~~')
 
+    try {
+      fs.statSync(dataPath)
+    } catch (error) {
+      fs.mkdirSync(dataPath)
+    }
+
     fs.writeFile(
       `${dataPath}/content.js`,
       `export default ${JSON.stringify(archived, null, 2)};`,

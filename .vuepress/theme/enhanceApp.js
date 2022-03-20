@@ -40,5 +40,4 @@ export default ({ Vue, router }) => {
   Vue.use(Autocomplete)
 
   Vue.use(routes, { router })
-  Vue.use(importElement)
 }
