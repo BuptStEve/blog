@@ -44,7 +44,7 @@
                 class="toc-link ellipsis"
                 :href="'#'+item"
                 :style="{marginLeft:offsetList[index]*12+'px'}"
-              >{{ item }}</a>
+              >{{ formatToc(item) }}</a>
             </li>
           </ul>
         </div>
@@ -155,6 +155,9 @@ export default {
     }, 20)
   },
   methods: {
+    formatToc(str) {
+      return str.replace(/^_/, '').replace('-', '.');
+    },
     throttle (fn, wait, maxTimelong) {
       var timeout = null
       var startTime = Date.parse(new Date())

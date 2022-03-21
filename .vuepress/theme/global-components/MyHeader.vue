@@ -220,7 +220,6 @@ export default {
     top: 0;
     width: 100%;
     color: #fff;
-    height: 56px;
     background: #3f51b5;
     padding-left: 260px;
     transition: padding-left 0.2s ease-in-out, background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.15s linear;
@@ -229,7 +228,7 @@ export default {
     padding-top: 3px;
 
     .repo-link {
-        color: #fff;
+      color: #fff;
     }
 }
 
