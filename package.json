@@ -4,10 +4,9 @@
   "description": "✍️ StEve Young 的个人博客",
   "private": true,
   "scripts": {
-    "docs": "vuepress dev ./",
-    "docs:build": "vuepress build ./",
-    "lint": "eslint --fix ./ .vuepress/ --ext .js,.ts,.vue --ignore-path .gitignore",
-    "deploy": "npm run docs:build && gh-pages -m \"[ci skip]\" -d dist/"
+    "start": "vuepress dev ./",
+    "build": "vuepress build ./",
+    "lint": "eslint --fix ./ .vuepress/ --ext .js,.ts,.vue --ignore-path .gitignore"
   },
   "dependencies": {
     "dayjs": "^1.11.0",
@@ -21,8 +20,6 @@
     "core-js": "2.x",
     "eslint": "^6.8.0",
     "eslint-plugin-vue": "^5.2.3",
-    "gh-pages": "^3.2.3",
-    "lint-staged": "^12.3.5",
     "sass": "^1.49.9",
     "sass-loader": "^7.3.1",
     "typescript": "^4.6.2",
