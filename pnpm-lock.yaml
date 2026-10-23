@@ -3039,8 +3039,8 @@ packages:
   immediate@3.3.0:
     resolution: {integrity: sha512-HR7EVodfFUdQCTIeySw+WDRFJlPcLOJbXfwwZ7Oom6tjsvZ3bOkCDJHehQC3nxJrv7+f9XecwazynjU8e4Vw3Q==}
 
-  immutable@4.0.0:
-    resolution: {integrity: sha512-zIE9hX70qew5qTUjSS7wi1iwj/l7+m54KWU247nhM3v806UdGj1yDndXj+IOYxxtW9zyLI+xqFNZjTuDaLUqFw==}
+  immutable@4.3.9:
+    resolution: {integrity: sha512-ObHy4YN7ycwZOUCLI1/6svfyAFu7vL8RhAvVu/bh/RZW9EPlOyDaQ9jDQWCtdqzaXUjgXZCW1migtHE7YI7UGQ==}
 
   import-cwd@2.1.0:
     resolution: {integrity: sha512-Ew5AZzJQFqrOV5BTW3EIoHAnoie1LojZLXKcCQ/yTRyVZosBhK1x1ViYjHGf5pAFOq8ZyChZp6m/fSN7pJyZtg==}
@@ -9243,7 +9243,7 @@ snapshots:
 
   immediate@3.3.0: {}
 
-  immutable@4.0.0: {}
+  immutable@4.3.9: {}
 
   import-cwd@2.1.0:
     dependencies:
@@ -10792,7 +10792,7 @@ snapshots:
   sass@1.49.9:
     dependencies:
       chokidar: 3.5.3
-      immutable: 4.0.0
+      immutable: 4.3.9
       source-map-js: 1.2.2
 
   sax@1.2.4: {}
